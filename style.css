@@ -1903,85 +1903,297 @@ html, body {
         height: 150px;
     }
 }
-/* ===================================================
-   RESPONSIVITÉ : TECHNOLOGIES & CONTACT
-   =================================================== */
+/* ============================= */
+/* LIVE RESEARCH RESPONSIVE FIX  */
+/* ============================= */
 
-/* --- 1. SÉCURITÉ GLOBALE --- */
-* {
-    box-sizing: border-box;
-}
-
-/* --- 2. ADAPTATION DES GRILLES (PC -> TABLETTE -> MOBILE) --- */
-@media (max-width: 1024px) {
-    .tech-grid, 
-    .contact-grid {
-        grid-template-columns: 1fr !important; /* On empile les sections */
-        gap: 2.5rem;
-    }
-}
-
-/* --- 3. SECTION TECHNOLOGIES (SKILLS) --- */
-@media (max-width: 768px) {
-    .tech-skills {
-        grid-template-columns: 1fr !important; /* Les cartes de skills passent en 1 colonne */
-    }
-    
-    .skill-card {
-        padding: 0.8rem 1rem;
-    }
-}
-
-/* --- 4. SECTION CONTACT (FORCE L'ALIGNEMENT SUR UNE LIGNE) --- */
-.contact-detail {
-    display: flex !important;
-    flex-direction: row !important; /* Force l'icône et le texte sur la même ligne */
-    align-items: center !important;
-    gap: 15px;
-    margin-bottom: 1.2rem;
+/* Base sécurité */
+.live-research,
+.live-feed,
+.research-section {
     width: 100%;
+    max-width: 100%;
+    overflow: hidden;
 }
 
-.contact-detail i {
-    flex-shrink: 0; /* Empêche l'icône de rétrécir */
-    width: 30px;    /* Largeur fixe pour l'icône pour un alignement parfait */
-    text-align: center;
-    font-size: 1.3rem;
-    color: var(--primary);
+/* GRID propre */
+.research-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
 }
 
-.contact-detail span, 
-.contact-detail a {
-    font-size: 0.95rem;
-    word-break: break-word; /* Si l'email est trop long, il se coupe proprement */
-    color: var(--text-main);
-    text-decoration: none;
+/* CARD FIX */
+.research-card {
+    width: 100%;
+    min-width: 0;
+    overflow: hidden;
 }
 
-/* Ajustements spécifiques pour Mobile (max 480px) */
-@media (max-width: 480px) {
-    .contact-info {
-        padding: 10px;
+/* TEXT FIX */
+.research-card h3,
+.research-card p {
+    word-break: break-word;
+}
+
+/* ============================= */
+/* TABLETTE                     */
+/* ============================= */
+
+@media (max-width: 1024px) {
+
+    .research-grid {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     }
-    
-    .contact-detail {
-        gap: 10px; /* On réduit un peu l'espace sur très petit écran */
-    }
 
-    .contact-detail span, 
-    .contact-detail a {
-        font-size: 0.85rem; /* On réduit légèrement la police pour que tout tienne */
+    .research-card {
+        padding: 18px;
     }
 }
 
-/* --- 5. NETTOYAGE DES DÉBORDEMENTS --- */
+/* ============================= */
+/* MOBILE                       */
+/* ============================= */
+
 @media (max-width: 768px) {
-    body {
-        overflow-x: hidden; /* Empêche le scroll horizontal accidentel */
+
+    .research-grid {
+        grid-template-columns: 1fr;
     }
-    
-    .container {
-        padding-left: 15px;
-        padding-right: 15px;
+
+    .research-card {
+        padding: 16px;
+    }
+
+    .research-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .research-links {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+}
+
+/* ============================= */
+/* SMALL MOBILE                 */
+/* ============================= */
+
+@media (max-width: 480px) {
+
+    .research-card {
+        padding: 14px;
+        border-radius: 12px;
+    }
+
+    .research-card h3 {
+        font-size: 1rem;
+    }
+
+    .research-card p {
+        font-size: 0.85rem;
+    }
+}
+
+/* ============================= */
+/* EXTRA SMALL                  */
+/* ============================= */
+
+@media (max-width: 360px) {
+
+    .research-card {
+        padding: 12px;
+    }
+}
+/* ============================= */
+/* CONTACT RESPONSIVE FIX        */
+/* ============================= */
+
+/* sécurité globale */
+.contact-section,
+.contact-grid,
+.contact-info,
+.contact-form {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+/* layout desktop propre */
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+/* texte et items */
+.contact-detail {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.contact-detail a {
+    word-break: break-word;
+}
+
+/* ============================= */
+/* TABLETTE                     */
+/* ============================= */
+
+@media (max-width: 1024px) {
+
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ============================= */
+/* MOBILE                       */
+/* ============================= */
+
+@media (max-width: 768px) {
+
+    .contact-grid {
+        grid-template-columns: 1fr !important;
+        gap: 15px;
+    }
+
+    .contact-info,
+    .contact-form {
+        padding: 16px;
+    }
+
+    .contact-detail {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+}
+
+/* ============================= */
+/* SMALL MOBILE                 */
+/* ============================= */
+
+@media (max-width: 480px) {
+
+    .contact-detail {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+
+    .contact-detail i {
+        font-size: 1rem;
+    }
+
+    .contact-detail a {
+        font-size: 0.85rem;
+    }
+
+    .contact-info,
+    .contact-form {
+        padding: 14px;
+        border-radius: 12px;
+    }
+}
+
+/* ============================= */
+/* EXTRA SMALL                  */
+/* ============================= */
+
+@media (max-width: 360px) {
+
+    .contact-info,
+    .contact-form {
+        padding: 12px;
+    }
+}
+/* ============================= */
+/* TECHNOLOGIES UTILISÉES FIX    */
+/* ============================= */
+
+/* sécurité globale */
+.tech-section,
+.tech-grid,
+.tech-skills,
+.tech-card {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+/* layout desktop */
+.tech-grid,
+.tech-skills {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+/* carte tech */
+.tech-card {
+    min-width: 0;
+    word-break: break-word;
+}
+
+/* ============================= */
+/* TABLETTE                     */
+/* ============================= */
+
+@media (max-width: 1024px) {
+
+    .tech-grid,
+    .tech-skills {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+}
+
+/* ============================= */
+/* MOBILE                       */
+/* ============================= */
+
+@media (max-width: 768px) {
+
+    .tech-grid,
+    .tech-skills {
+        grid-template-columns: 1fr;
+    }
+
+    .tech-card {
+        padding: 16px;
+    }
+}
+
+/* ============================= */
+/* SMALL MOBILE                 */
+/* ============================= */
+
+@media (max-width: 480px) {
+
+    .tech-card {
+        padding: 14px;
+        border-radius: 12px;
+    }
+
+    .tech-card h3 {
+        font-size: 1rem;
+    }
+
+    .tech-card p {
+        font-size: 0.85rem;
+    }
+}
+
+/* ============================= */
+/* EXTRA SMALL                  */
+/* ============================= */
+
+@media (max-width: 360px) {
+
+    .tech-card {
+        padding: 12px;
     }
 }
