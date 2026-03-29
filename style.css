@@ -2549,69 +2549,7 @@ html, body {
 }
 
 /* --- OPTIMISATION TRÈS PETITS ÉCRANS (< 380px) --- */
-@media (max-width: 380px) {
-    .profile-actions .btn, 
-    .btn-cv {
-        max-width: 240px !important; /* On réduit encore un peu sur très petit mobile */
-        font-size: 0.8rem !important;
-        padding: 8px 15px !important;
-    }
-}
-   @media (max-width: 768px) {
-    /* 1. On empêche les boutons sociaux de s'étirer */
-    .social-links {
-        display: flex !important;
-        flex-direction: row !important;
-        justify-content: center !important;
-        width: 100% !important;
-        max-width: none !important;
-        margin: 15px 0 !important;
-    }
 
-    .social-btn {
-        /* Largeur fixe et courte pour les cercles */
-        width: 42px !important;
-        min-width: 42px !important; 
-        height: 42px !important;
-        padding: 0 !important;
-        margin: 0 5px !important;
-        flex: none !important; /* Empêche le bouton de grandir */
-    }
-
-    /* 2. On limite la largeur du bouton CV */
-    .profile-actions {
-        width: 100% !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-    }
-
-    .btn-cv, 
-    .profile-actions .btn {
-        /* On remplace width: 100% par une largeur auto ou max-width */
-        width: auto !important; 
-        min-width: 180px !important; /* Largeur minimale pour le texte */
-        max-width: 240px !important; /* Largeur maximale pour ne pas être trop grand */
-        padding: 10px 20px !important;
-        margin: 5px 0 !important;
-        display: inline-flex !important;
-        justify-content: center !important;
-    }
-}
-
-/* --- FIX POUR LES ÉCRANS TRÈS ÉTROITS (< 360px) --- */
-@media (max-width: 360px) {
-    .btn-cv {
-        min-width: 150px !important;
-        font-size: 0.8rem !important;
-    }
-    
-    .social-btn {
-        width: 38px !important;
-        min-width: 38px !important;
-        height: 38px !important;
-    }
-}
 /* ===================================================
    ALIGNEMENT CONTACT : LOGO ET TEXTE SUR LA MÊME LIGNE
    =================================================== */
