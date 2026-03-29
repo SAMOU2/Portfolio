@@ -2494,58 +2494,62 @@ html, body {
    CORRECTIF LARGEUR (WIDTH) : BOUTONS PROFIL
    =================================================== */
 
-   @media (max-width: 768px) {
-    /* 1. On empêche les boutons sociaux de s'étirer */
+ /* ===================================================
+   UNIFICATION TOTALE : CV, LINKEDIN, FACEBOOK
+   (Style rectangulaire identique pour tous)
+   =================================================== */
+
+@media (max-width: 768px) {
+    /* 1. On change le conteneur des réseaux pour qu'ils s'empilent comme le CV */
     .social-links {
         display: flex !important;
-        flex-direction: row !important;
-        justify-content: center !important;
-        width: 100% !important;
-        max-width: none !important;
-        margin: 15px 0 !important;
-    }
-
-    .social-btn {
-        /* Largeur fixe et courte pour les cercles */
-        width: 42px !important;
-        min-width: 42px !important; 
-        height: 42px !important;
-        padding: 0 !important;
-        margin: 0 5px !important;
-        flex: none !important; /* Empêche le bouton de grandir */
-    }
-
-    /* 2. On limite la largeur du bouton CV */
-    .profile-actions {
-        width: 100% !important;
-        display: flex !important;
-        flex-direction: column !important;
+        flex-direction: column !important; /* Empilement vertical */
         align-items: center !important;
+        width: 100% !important;
+        gap: 10px !important; /* Espace identique entre chaque bouton */
+        margin: 5px 0 !important;
     }
 
+    /* 2. On applique le style du bouton CV à LinkedIn et Facebook */
+    .social-btn, 
     .btn-cv, 
     .profile-actions .btn {
-        /* On remplace width: 100% par une largeur auto ou max-width */
-        width: auto !important; 
-        min-width: 180px !important; /* Largeur minimale pour le texte */
-        max-width: 240px !important; /* Largeur maximale pour ne pas être trop grand */
-        padding: 10px 20px !important;
-        margin: 5px 0 !important;
+        /* --- RESET DES CERCLES --- */
+        border-radius: 12px !important; /* Arrondi rectangulaire doux */
+        height: auto !important;        /* On oublie la hauteur fixe du cercle */
+        
+        /* --- DIMENSIONS IDENTIQUES --- */
+        width: 100% !important; 
+        min-width: 180px !important;    /* Largeur minimale pour le texte */
+        max-width: 240px !important;    /* Largeil maximale identique au CV */
+        
+        /* --- STYLE & TEXTE --- */
         display: inline-flex !important;
         justify-content: center !important;
+        align-items: center !important;
+        padding: 10px 20px !important;
+        margin: 5px 0 !important;
+        
+        border-width: 1px !important;   /* Bordure fine */
+        font-size: 0.9rem !important;
+        font-weight: 600 !important;
+        text-decoration: none !important;
+        white-space: nowrap !important;
+    }
+
+    /* 3. Ajustement des icônes à l'intérieur */
+    .social-btn i, .btn-cv i {
+        margin-right: 10px !important; /* Espace entre le logo et le texte */
+        font-size: 1.1rem !important;
     }
 }
 
-/* --- FIX POUR LES ÉCRANS TRÈS ÉTROITS (< 360px) --- */
+/* --- OPTIMISATION ÉCRANS TRÈS ÉTROITS (< 360px) --- */
 @media (max-width: 360px) {
-    .btn-cv {
+    .social-btn, .btn-cv {
         min-width: 150px !important;
+        max-width: 200px !important;
         font-size: 0.8rem !important;
-    }
-    
-    .social-btn {
-        width: 38px !important;
-        min-width: 38px !important;
-        height: 38px !important;
+        padding: 8px 15px !important;
     }
 }
