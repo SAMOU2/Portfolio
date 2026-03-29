@@ -1767,3 +1767,235 @@ a{
         right: -10px;
     }
 }
+
+
+/* Reset responsive global */
+* {
+    max-width: 100%;
+}
+
+/* Empêche débordement */
+body {
+    overflow-x: hidden;
+}
+
+/* Images / canvas adaptatifs */
+img, video, canvas {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Texte adaptable */
+h1, h2, h3, h4, p, span {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Containers fluides */
+.container,
+.luxury-card,
+.live-feed,
+.contact-info,
+.contact-form,
+.project-detail,
+.research-card,
+.skill-category,
+.tech-chart,
+.skill-card {
+    width: 100%;
+}
+
+/* FLEX FIX */
+.card-inner,
+.project-detail,
+.contact-grid,
+.tech-grid,
+.research-header,
+.action-buttons {
+    flex-wrap: wrap;
+}
+
+/* GRID FIX */
+.research-grid,
+.skills-grid,
+.tech-skills,
+.footer-container {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+/* Boutons responsive */
+.btn,
+.btn-link,
+.meet-btn {
+    white-space: nowrap;
+    max-width: 100%;
+    text-align: center;
+}
+
+/* Scroll mobile fluide */
+html {
+    scroll-behavior: smooth;
+}
+
+/* ================= DESKTOP LARGE ================= */
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1200px;
+        margin: auto;
+    }
+}
+
+/* ================= TABLET ================= */
+@media (max-width: 1024px) {
+
+    .menu {
+        width: 95%;
+        padding: 12px;
+    }
+
+    .hero {
+        height: auto;
+        padding: 80px 20px;
+    }
+
+    .card-inner {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .project-detail {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .tech-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+
+    body {
+        font-size: 14px;
+    }
+
+    .menu {
+        border-radius: 20px;
+    }
+
+    .logo {
+        font-size: 1.4rem;
+    }
+
+    .menu-items {
+        width: 100%;
+    }
+
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .photo-container {
+        width: 130px;
+        height: 130px;
+    }
+
+    .luxury-card {
+        padding: 20px;
+    }
+
+    .project-detail {
+        padding: 20px;
+    }
+
+    .terminal-body {
+        height: 200px;
+        font-size: 0.8rem;
+    }
+
+    .chatbot-window {
+        width: 90vw;
+        right: 0;
+    }
+
+    .settings-panel {
+        width: 95%;
+    }
+
+    .timeline::before {
+        left: 10px;
+    }
+
+    .timeline-item {
+        padding-left: 35px;
+    }
+}
+
+/* ================= SMALL MOBILE ================= */
+@media (max-width: 480px) {
+
+    .hero-content h1 {
+        font-size: 1.6rem;
+    }
+
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .menu {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .menu-items {
+        width: 100%;
+        text-align: center;
+    }
+
+    .photo-container {
+        width: 110px;
+        height: 110px;
+    }
+
+    .terminal-body {
+        height: 180px;
+    }
+
+    .chatbot-window {
+        width: 95vw;
+        height: 380px;
+    }
+
+    .stat-card {
+        width: 100%;
+    }
+
+    .contact-detail {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+/* ================= EXTRA SMALL ================= */
+@media (max-width: 360px) {
+
+    .hero-content h1 {
+        font-size: 1.4rem;
+    }
+
+    .logo {
+        font-size: 1.2rem;
+    }
+
+    .btn {
+        font-size: 0.8rem;
+        padding: 8px;
+    }
+}
