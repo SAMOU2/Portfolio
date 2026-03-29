@@ -1999,3 +1999,78 @@ html {
         padding: 8px;
     }
 }
+@media (max-width: 768px) {
+
+    .contact-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .contact-info,
+    .contact-form {
+        width: 100%;
+    }
+
+    .contact-detail {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: flex-start;
+    }
+
+    .contact-detail a {
+        word-break: break-word;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .contact-detail {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .contact-detail i {
+        margin-bottom: 5px;
+    }
+}
+
+
+/* ============================= */
+/* RESPONSIVE CHATBOT            */
+/* ============================= */
+
+@media (max-width: 768px) {
+
+    .chatbot {
+        right: 10px;
+        bottom: 80px;
+    }
+
+    .chatbot-window {
+        width: 95vw;
+        height: 420px;
+        right: 0;
+    }
+
+    .chatbot-messages {
+        padding: 10px;
+    }
+
+    .message {
+        max-width: 90%;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .chatbot-window {
+        width: 100vw;
+        height: 380px;
+        right: -10px;
+        border-radius: 0;
+    }
+
+    .chatbot-input input {
+        font-size: 0.8rem;
+    }
+}
