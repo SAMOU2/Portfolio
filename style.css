@@ -2493,7 +2493,70 @@ html, body {
 /* ===================================================
    CORRECTIF LARGEUR (WIDTH) : BOUTONS PROFIL
    =================================================== */
+/* ===================================================
+   RESPONSIVITÉ UNIFIÉE : TOUS LES BOUTONS DU PROFIL
+   (Comme "Télécharger CV")
+   =================================================== */
 
+@media (max-width: 768px) {
+    /* 1. Conteneur principal des actions du profil */
+    .profile-actions {
+        display: flex !important;
+        flex-direction: column !important; /* Empilement vertical sur mobile */
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 12px; /* Espace uniforme entre les boutons */
+        width: 100% !important;
+        margin-top: 25px !important;
+        padding: 0 10px !important; /* Petite sécurité sur les bords */
+    }
+
+    /* 2. Style UNIFIÉ pour TOUS les boutons du profil */
+    /* Remplace '.other-btn' par la vraie classe de tes deux autres boutons */
+    .btn-cv,
+    .profile-actions .btn,
+    .profile-actions .other-btn, 
+    .btn-linkedin-text { /* Si LinkedIn est un bouton texte */
+        /* --- LARGEUR ET ALIGNEMENT (Ton correctif principal) --- */
+        width: 100% !important;      /* Prend toute la largeur disponible du conteneur parent */
+        max-width: 280px !important; /* MAIS on limite pour ne pas être "géant" */
+        min-width: 200px !important; /* Largeur minimale pour le texte */
+        display: inline-flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        margin: 0 auto !important;   /* Centre le bouton horizontalement */
+
+        /* --- BORDURES ET PADDING (Compact comme CV) --- */
+        border-width: 1px !important; /* Bordure fine */
+        padding: 10px 20px !important; /* Padding compact pour le tactile */
+        border-radius: 12px !important; /* Arrondi doux */
+        
+        /* --- TEXTE --- */
+        font-size: 0.9rem !important;
+        font-weight: 600 !important;
+        text-transform: uppercase; /* Optionnel : pour un look plus "pro" */
+        letter-spacing: 1px;
+        white-space: nowrap; /* Empêche le texte de sauter à la ligne */
+    }
+
+    /* 3. Ajustement des icônes à l'intérieur des boutons */
+    .profile-actions .btn i,
+    .btn-cv i {
+        font-size: 1.1rem !important;
+        margin-right: 10px !important; /* Espace entre l'icône et le texte */
+        flex-shrink: 0;
+    }
+}
+
+/* --- OPTIMISATION TRÈS PETITS ÉCRANS (< 380px) --- */
+@media (max-width: 380px) {
+    .profile-actions .btn, 
+    .btn-cv {
+        max-width: 240px !important; /* On réduit encore un peu sur très petit mobile */
+        font-size: 0.8rem !important;
+        padding: 8px 15px !important;
+    }
+}
    @media (max-width: 768px) {
     /* 1. On empêche les boutons sociaux de s'étirer */
     .social-links {
@@ -2547,5 +2610,56 @@ html, body {
         width: 38px !important;
         min-width: 38px !important;
         height: 38px !important;
+    }
+}
+/* ===================================================
+   ALIGNEMENT CONTACT : LOGO ET TEXTE SUR LA MÊME LIGNE
+   =================================================== */
+
+/* Le conteneur d'une ligne de contact (ex: Email) */
+.contact-detail {
+    display: flex !important;
+    flex-direction: row !important; /* Force l'alignement horizontal */
+    align-items: center !important;  /* Centre l'icône verticalement par rapport au texte */
+    gap: 12px;                      /* Espace entre le logo et le texte */
+    margin-bottom: 15px;
+    width: 100%;
+    text-align: left;               /* Aligne le texte à gauche même si le parent est centré */
+}
+
+/* Le Logo / Icône (FontAwesome ou autre) */
+.contact-detail i {
+    flex-shrink: 0 !important;      /* EMPÊCHE le logo de rétrécir ou de sauter à la ligne */
+    width: 35px;                    /* Largeur fixe pour que tous les textes soient alignés verticalement */
+    height: 35px;
+    background: rgba(0, 210, 255, 0.1); /* Petit fond discret (optionnel) */
+    color: var(--primary);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+}
+
+/* Le Texte (Email, lien, etc.) */
+.contact-detail span, 
+.contact-detail a {
+    font-size: 0.9rem;
+    color: var(--text-main);
+    text-decoration: none;
+    white-space: nowrap;            /* Empêche le texte de se couper si possible */
+    overflow: hidden;
+    text-overflow: ellipsis;        /* Ajoute "..." si l'email est vraiment trop long pour l'écran */
+}
+
+/* --- ADAPTATION MOBILE --- */
+@media (max-width: 480px) {
+    .contact-detail {
+        gap: 8px;                   /* On réduit l'espace sur petit mobile */
+    }
+
+    .contact-detail span, 
+    .contact-detail a {
+        font-size: 0.85rem;         /* Texte légèrement plus petit pour que tout tienne */
     }
 }
