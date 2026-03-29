@@ -2445,3 +2445,62 @@ html, body {
         height: 38px !important;
     }
 }
+/* ===================================================
+   RESPONSIVITÉ : BOUTONS RÉSEAUX & ACTION (PROFIL)
+   =================================================== */
+
+@media (max-width: 768px) {
+    /* 1. Conteneur des réseaux (LinkedIn, Facebook) */
+    .social-links {
+        display: flex !important;
+        flex-direction: row !important; /* Garde les icônes sur une seule ligne */
+        justify-content: center;
+        gap: 15px;
+        margin: 10px 0;
+    }
+
+    /* Réduction des boutons circulaires (LinkedIn/Facebook) */
+    .social-btn {
+        width: 42px !important;  /* Taille fixe et propre pour mobile */
+        height: 42px !important;
+        font-size: 1.2rem !important; /* Taille de l'icône réduite */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        padding: 0 !important; /* On enlève le padding qui fait gonfler le bouton */
+    }
+
+    /* 2. Bouton "Télécharger CV" et autres actions */
+    .profile-actions {
+        display: flex !important;
+        flex-direction: column !important; /* On les empile pour éviter qu'ils sortent de l'écran */
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .profile-actions .btn-cv {
+        width: 90% !important;   /* Prend presque toute la largeur pour cliquer facilement */
+        max-width: 250px;       /* Mais on limite pour que ce ne soit pas "géant" */
+        padding: 10px 20px !important;
+        font-size: 0.9rem !important;
+        text-align: center;
+        white-space: nowrap;    /* Empêche le texte "Télécharger CV" de se couper */
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+/* --- OPTIMISATION TRÈS PETITS MOBILES (< 400px) --- */
+@media (max-width: 400px) {
+    .social-btn {
+        width: 38px !important;
+        height: 38px !important;
+    }
+
+    .profile-info h2 {
+        font-size: 1.3rem !important; /* On réduit aussi le nom si besoin */
+    }
+}
