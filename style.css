@@ -2379,3 +2379,69 @@ html, body {
         line-height: 1.5;
     }
 }
+/* ===================================================
+   RESPONSIVITÉ : BOUTONS PROFIL (LinkedIn & Actions)
+   =================================================== */
+
+   @media (max-width: 768px) {
+    /* 1. Conteneur des boutons LinkedIn / GitHub / etc. */
+    .social-links {
+        display: flex !important;
+        flex-direction: row !important; /* On les garde sur la même ligne */
+        justify-content: center;
+        gap: 12px;
+        margin: 15px 0;
+    }
+
+    /* Réduction de la taille des boutons circulaires (LinkedIn/Social) */
+    .social-btn {
+        width: 40px !important;
+        height: 40px !important;
+        font-size: 1.1rem !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+    }
+
+    /* 2. Les deux autres boutons (ex: "Mon CV" et "Contact") */
+    .profile-actions {
+        display: flex !important;
+        flex-direction: row !important; /* Côte à côte sur tablette */
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        margin-top: 15px;
+    }
+
+    /* On réduit la taille du texte et le padding des boutons d'action */
+    .profile-actions .btn {
+        padding: 8px 16px !important;
+        font-size: 0.85rem !important;
+        flex: 1; /* Ils prennent la même largeur */
+        max-width: 150px; /* Mais pas trop larges */
+        white-space: nowrap; /* Empêche le texte de sauter à la ligne */
+    }
+}
+
+/* --- OPTIMISATION POUR LES TRÈS PETITS ÉCRANS (Mobiles < 480px) --- */
+@media (max-width: 480px) {
+    .profile-actions {
+        flex-direction: column !important; /* Sur petit mobile, l'un sur l'autre pour le pouce */
+        align-items: center;
+    }
+
+    .profile-actions .btn {
+        width: 100% !important; /* Largeur complète pour cliquer facilement */
+        max-width: 280px;
+    }
+
+    .social-links {
+        gap: 15px; /* Plus d'espace pour éviter les clics accidentels */
+    }
+    
+    .social-btn {
+        width: 38px !important;
+        height: 38px !important;
+    }
+}
