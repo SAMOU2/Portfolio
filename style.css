@@ -1903,3 +1903,85 @@ html, body {
         height: 150px;
     }
 }
+/* ===================================================
+   RESPONSIVITÉ : TECHNOLOGIES & CONTACT
+   =================================================== */
+
+/* --- 1. SÉCURITÉ GLOBALE --- */
+* {
+    box-sizing: border-box;
+}
+
+/* --- 2. ADAPTATION DES GRILLES (PC -> TABLETTE -> MOBILE) --- */
+@media (max-width: 1024px) {
+    .tech-grid, 
+    .contact-grid {
+        grid-template-columns: 1fr !important; /* On empile les sections */
+        gap: 2.5rem;
+    }
+}
+
+/* --- 3. SECTION TECHNOLOGIES (SKILLS) --- */
+@media (max-width: 768px) {
+    .tech-skills {
+        grid-template-columns: 1fr !important; /* Les cartes de skills passent en 1 colonne */
+    }
+    
+    .skill-card {
+        padding: 0.8rem 1rem;
+    }
+}
+
+/* --- 4. SECTION CONTACT (FORCE L'ALIGNEMENT SUR UNE LIGNE) --- */
+.contact-detail {
+    display: flex !important;
+    flex-direction: row !important; /* Force l'icône et le texte sur la même ligne */
+    align-items: center !important;
+    gap: 15px;
+    margin-bottom: 1.2rem;
+    width: 100%;
+}
+
+.contact-detail i {
+    flex-shrink: 0; /* Empêche l'icône de rétrécir */
+    width: 30px;    /* Largeur fixe pour l'icône pour un alignement parfait */
+    text-align: center;
+    font-size: 1.3rem;
+    color: var(--primary);
+}
+
+.contact-detail span, 
+.contact-detail a {
+    font-size: 0.95rem;
+    word-break: break-word; /* Si l'email est trop long, il se coupe proprement */
+    color: var(--text-main);
+    text-decoration: none;
+}
+
+/* Ajustements spécifiques pour Mobile (max 480px) */
+@media (max-width: 480px) {
+    .contact-info {
+        padding: 10px;
+    }
+    
+    .contact-detail {
+        gap: 10px; /* On réduit un peu l'espace sur très petit écran */
+    }
+
+    .contact-detail span, 
+    .contact-detail a {
+        font-size: 0.85rem; /* On réduit légèrement la police pour que tout tienne */
+    }
+}
+
+/* --- 5. NETTOYAGE DES DÉBORDEMENTS --- */
+@media (max-width: 768px) {
+    body {
+        overflow-x: hidden; /* Empêche le scroll horizontal accidentel */
+    }
+    
+    .container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
