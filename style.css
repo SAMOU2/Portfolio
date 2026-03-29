@@ -2074,3 +2074,139 @@ html {
         font-size: 0.8rem;
     }
 }
+/* ===================================================
+   SYSTÈME DE RESPONSIVITÉ GLOBAL (ANTI-BUG)
+   =================================================== */
+
+/* 1. Sécurité de base pour éviter le scroll horizontal */
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+    position: relative;
+    width: 100%;
+}
+
+* {
+    box-sizing: border-box; /* Crucial pour que les paddings ne cassent pas la largeur */
+}
+
+/* --- LARGE TABLETS & SMALL LAPTOPS (max 1024px) --- */
+@media (max-width: 1024px) {
+    .tech-grid, 
+    .contact-grid {
+        grid-template-columns: 1fr !important;
+        gap: 2.5rem;
+    }
+    
+    .luxury-card {
+        margin: -30px 20px 0;
+        padding: 25px;
+    }
+}
+
+/* --- TABLETS PORTRAIT (max 768px) --- */
+@media (max-width: 768px) {
+    /* Menu & Navigation */
+    .menu {
+        width: 95%;
+        padding: 0.8rem 1.5rem;
+    }
+    
+    .menu-items {
+        display: none; /* Cache les liens texte pour laisser place à un futur menu burger */
+    }
+
+    /* Grilles de compétences */
+    .tech-skills {
+        grid-template-columns: 1fr !important; /* Force une seule colonne */
+    }
+
+    /* Terminal & Contenu */
+    .terminal-body {
+        height: 250px;
+        font-size: 0.85rem;
+    }
+
+    .card-inner {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .photo-container {
+        width: 140px;
+        height: 140px;
+        margin: 0 auto;
+    }
+
+    /* Gestion des boutons flottants */
+    .chatbot {
+        right: 15px;
+        bottom: 85px; /* On le monte pour ne pas cacher le bouton settings */
+    }
+
+    .chatbot-window {
+        width: calc(100vw - 30px);
+        right: 0;
+        height: 400px;
+    }
+}
+
+/* --- SMARTPHONES (max 480px) --- */
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 1.8rem;
+        line-height: 1.2;
+    }
+
+    /* Boutons de contrôle (Settings + Chatbot) */
+    .settings-btn {
+        width: 45px;
+        height: 45px;
+        bottom: 15px;
+        right: 15px;
+    }
+
+    .chatbot {
+        bottom: 75px; /* Juste au dessus du bouton settings */
+        right: 15px;
+    }
+
+    /* Chatbot en mode "Full Screen" pour le confort de frappe */
+    .chatbot-window {
+        position: fixed;
+        width: 100vw;
+        height: 85vh; /* Prend presque tout l'écran */
+        bottom: 0;
+        right: 0;
+        border-radius: 20px 20px 0 0;
+        z-index: 2000;
+    }
+
+    /* Formulaires & Inputs */
+    .contact-form input, 
+    .contact-form textarea {
+        font-size: 16px; /* Évite le zoom automatique sur iPhone */
+    }
+
+    .contact-detail {
+        flex-direction: column;
+        text-align: center;
+        padding: 10px;
+    }
+
+    /* Compétences */
+    .skill-card {
+        padding: 0.8rem;
+    }
+}
+
+/* --- FIX POUR LES ÉCRANS TRÈS PETITS OU PAYSAGE --- */
+@media (max-height: 500px) and (orientation: landscape) {
+    .chatbot-window {
+        height: 95vh;
+    }
+    .terminal-body {
+        height: 150px;
+    }
+}
