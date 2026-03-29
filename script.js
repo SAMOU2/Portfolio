@@ -1123,55 +1123,58 @@ function addChatMessage(text, sender = 'user') {
 
 // Nettoyer le texte pour mieux détecter les intentions
 function normalize(text) {
-    return text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""); // enlève accents
+    return text
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
 }
-
 function getBotResponse(userMessage) {
     let msg = normalize(userMessage);
     
     // Dictionnaire des réponses (intentions)
-    const intents = {
-        // Salutations
-        'bonjour|salut|coucou|hello|hey': "Bonjour ! Comment puis-je vous aider ?",
-        'ça va|comment allez-vous|comment ça va': "Très bien, merci ! Et vous ?",
-        'merci|thanks': "Avec plaisir !",
-        
-        // Projets généraux
-        'projets?|quels projets|vos projets|liste des projets': "Mes principaux projets : GTB (bibliothèque), DorkLS, SQLI Scanner, StockVison, PHP Compiler, Analyse COVID-19. Lequel vous intéresse ?",
-        
-        // Projet GTB
-        'gtb|gestion de bibliothèque|bibliothèque': "GTB : gestion de bibliothèque avec carte numérique, détection de vol, base Oracle SQL. Voir site officiel.",
-        
-        // DorkLS
-        'dorkls|scanner de vulnérabilités|dork': "DorkLS : scanner web multithreadé pour trouver des failles de sécurité via moteurs de recherche.",
-        
-        // SQLI Scanner
-        'sqli|injection sql|scan sql': "SQLI Scanner : détection et exploitation des injections SQL avec contournement WAF.",
-        
-        // StockVison
-        'stockvison|gestion de stock|deepseek': "StockVison : gestion de stock intelligente avec assistant DeepSeek.",
-        
-        // PHP Compiler
-        'php compiler|analyseur php|compilateur php': "PHP Compiler : analyse lexicale et syntaxique de code PHP en temps réel.",
-        
-        // COVID-19
-        'covid|covid-19|analyse covid|simulation épidémiologique': "Analyse COVID-19 : simulation en C avec arbres binaires de recherche et statistiques par âge.",
-        
-        // Compétences
-        'compétences|skills|technologies|langages|outils': "Mes compétences : Java, Python, C, JavaScript, SQL, PHP, cybersécurité, Linux, Git, Three.js, DeepSeek.",
-        
-        // Contact
-        'contact|email|mail|me contacter': "Vous pouvez m'écrire à samoumegharba210@gmail.com ou utiliser le formulaire de contact.",
-        
-        // CV
-        'cv|télécharger cv|mon cv': "Mon CV est disponible en téléchargement dans le footer du site.",
-        
-        // À propos
-        'qui es-tu|présentation|toi': "Je suis l'assistant virtuel du portfolio de Samou Megharba, ingénieur en génie logiciel.",
-        
-        // Aide
-        'aide|help|que faire': "Vous pouvez me poser des questions sur les projets, compétences, contact, ou taper un nom de projet (GTB, DorkLS, etc.)."
-    };
+    // Dictionnaire des réponses (intentions)
+const intents = {
+    // Salutations
+    'bonjour|salut|coucou|hello|hey|hi': "Bonjour ! Comment puis-je vous aider ?",
+    'ca va|comment allez-vous|comment ca va': "Très bien, merci ! Et vous ?", // 'ça' devient 'ca'
+    'merci|thanks': "Avec plaisir !",
+    
+    // Projets généraux
+    'projets?|quels projets|vos projets|liste des projets': "Mes principaux projets : GTB (bibliothèque), DorkLS, SQLI Scanner, StockVison, PHP Compiler, Analyse COVID-19. Lequel vous intéresse ?",
+    
+    // Projet GTB
+    'gtb|gestion de bibliotheque|bibliotheque': "GTB : gestion de bibliothèque avec carte numérique, détection de vol, base Oracle SQL. Voir site officiel.", // Sans accent
+    
+    // DorkLS
+    'dorkls|scanner de vulnerabilites|dork': "DorkLS : scanner web multithreadé pour trouver des failles de sécurité via moteurs de recherche.", // Sans accent
+    
+    // SQLI Scanner
+    'sqli|injection sql|scan sql': "SQLI Scanner : détection et exploitation des injections SQL avec contournement WAF.",
+    
+    // StockVison
+    'stockvison|gestion de stock|deepseek': "StockVison : gestion de stock intelligente avec assistant DeepSeek.",
+    
+    // PHP Compiler
+    'php compiler|analyseur php|compilateur php': "PHP Compiler : analyse lexicale et syntaxique de code PHP en temps réel.",
+    
+    // COVID-19
+    'covid|covid-19|analyse covid|simulation epidemiologique': "Analyse COVID-19 : simulation en C avec arbres binaires de recherche et statistiques par âge.", // Sans accent
+    
+    // Compétences (LE BUG ÉTAIT ICI)
+    'competences|skills|technologies|langages|outils': "Mes compétences : Java, Python, C, JavaScript, SQL, PHP, cybersécurité, Linux, Git, Three.js, DeepSeek.",
+    
+    // Contact
+    'contact|email|mail|me contacter': "Vous pouvez m'écrire à samoumegharba210@gmail.com ou utiliser le formulaire de contact.",
+    
+    // CV
+    'cv|telecharger cv|mon cv': "Mon CV est disponible en téléchargement dans le footer du site.", // Sans accent
+    
+    // À propos
+    'qui es-tu|presentation|toi': "Je suis l'assistant virtuel du portfolio de Samou Megharba, ingénieur en génie logiciel.", // Sans accent
+    
+    // Aide
+    'aide|help|que faire': "Vous pouvez me poser des questions sur les projets, compétences, contact, ou taper un nom de projet (GTB, DorkLS, etc.)."
+};
     
     // Parcours des intentions
     for (let pattern in intents) {
