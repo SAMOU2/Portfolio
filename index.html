@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>MEGHARBA SAMOU</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <link rel="icon" type="image/png" href="photo.ico">
+</head>
+<body>
+    <canvas id="bg-canvas"></canvas>
+    <nav class="menu">
+        <div class="logo">MS</div>
+        <div class="menu-toggle" id="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="menu-items" id="menu-items">
+            <a href="#accueil" class="active">Accueil</a>
+            <a href="#profil">Profil</a>
+            <a href="#parcours">Parcours</a>
+            <a href="#projets">Projets</a>
+            <a href="#competences">Compétences</a>
+            <a href="#recherche">Live Research</a>
+            <a href="#tech-chart-section">Technologies utilisées</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <section id="accueil" class="hero">
+        <div id="earth-canvas"></div>
+        <div class="hero-content">
+            <h1 class="fade-in">MEGHARBA SAMOU</h1>
+            <p class="fade-in-delay">Ingénieur en Génie Logiciel | Expert Cybersécurité</p>
+        </div>
+    </section>
+
+    <section id="profil" class="info-section">
+        <div class="luxury-card">
+            <div class="card-inner">
+                <div class="photo-container" id="profile-photo-container">
+                    <img src="photo (1).jpg" alt="Profile" id="profile-photo">
+                    <div class="photo-overlay">
+                        <i class="fas fa-expand-alt"></i>
+                    </div>
+                </div>
+                <div class="details-box">
+                    <div class="marquee-tag">COORDONNÉES & RÉSEAUX PROFESSIONNELS</div>
+                    <div class="marquee-container">
+                        <div class="marquee-text">
+                            <span>📍 Tazmalt Béjaïa, Algérie</span>
+                            <span>📧 samoumegharba76@gmail.com</span>
+                            <span>📞 +213774371379</span>
+                            <span>🎓 Université Abderrahmane Mira</span>
+                            <span>🔗 LinkedIn: samou megharba</span>
+                            <span>👤 Facebook: Bert Rand</span>
+                        </div>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <a href="https://www.linkedin.com/in/samou megharba" target="_blank" class="btn btn-linkedin">
+                            <i class="fab fa-linkedin"></i> LinkedIn
+                        </a>
+                        <a href="https://www.facebook.com/Bert  Rand" target="_blank" class="btn btn-facebook">
+                            <i class="fab fa-facebook"></i> Facebook
+                        </a>
+                        <a href="CV.pdf" download class="btn btn-cv">
+                            <i class="fas fa-file-pdf"></i> Télécharger CV
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="recherche" class="live-section">
+        <div class="container">
+            <h2 class="title">
+                <i class="fas fa-broadcast-tower"></i>
+                Live Research
+                <span class="live-badge">LIVE</span>
+            </h2>
+            
+            <div class="research-grid">
+                <!-- Carte GTB -->
+                <div class="research-card" id="project-gtb">
+                    <div class="research-header">
+                        <span class="status online"></span>
+                        <h3>GTB – Gestion de Bibliothèque</h3>
+                        <span class="date">2026-03-21</span>
+                    </div>
+                    <p>Application complète de gestion de bibliothèque avec carte numérique adhérent, détection automatique de vol et pénalités. Base Oracle SQL distante. Architecture MVC.</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 100%"></div>
+                    </div>
+                    <span class="progress-text">Version 1.0</span>
+                    <div class="research-links">
+                        <a href="https://samou2.github.io/GTB/" target="_blank" class="research-link">
+                            <i class="fas fa-external-link-alt"></i> Site officiel
+                        </a>
+                        <a href="https://github.com/SAMOU2/GTB" target="_blank" class="research-link">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                    </div>
+                    <canvas id="chart-gtb" width="200" height="80" style="margin-top: 15px; width: 100%; height: auto;"></canvas>
+                    <div class="project-feed" id="feed-gtb"></div>
+                </div>
+
+                <!-- Carte DorkLS -->
+                <div class="research-card" id="project-dorkls">
+                    <div class="research-header">
+                        <span class="status online"></span>
+                        <h3>Dork Searcher Ultimate (DorkLS)</h3>
+                        <span class="date">2026-03-17</span>
+                    </div>
+                    <p>Scanner automatisé haute performance avec multithreading pour identifier des vulnérabilités web via moteurs de recherche.</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 90%"></div>
+                    </div>
+                    <span class="progress-text">90% complété</span>
+                    <div class="research-links">
+                        <a href="https://samou2.github.io/DorkLS/" target="_blank" class="research-link">
+                            <i class="fas fa-external-link-alt"></i> Site officiel
+                        </a>
+                        <a href="https://github.com/samou2/DorkLS" target="_blank" class="research-link">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                    </div>
+                    <canvas id="chart-dorkls" width="200" height="80" style="margin-top: 15px; width: 100%; height: auto;"></canvas>
+                    <div class="project-feed" id="feed-dorkls">
+                        <div class="feed-item"><span class="feed-time">16:20</span>🔍 Optimisation du moteur de recherche</div>
+                        <div class="feed-item"><span class="feed-time">15:05</span>🚀 Nouveau système de multithreading</div>
+                        <div class="feed-item"><span class="feed-time">13:30</span>📊 Scan 30% plus rapide</div>
+                    </div>
+                </div>
+
+                <!-- Carte SQLI Scanner -->
+                <div class="research-card" id="project-sqli">
+                    <div class="research-header">
+                        <span class="status online"></span>
+                        <h3>SQLI Scanner</h3>
+                        <span class="date">2026-03-18</span>
+                    </div>
+                    <p>L'outil ultime pour détecter et exploiter les vulnérabilités SQL injection. Multi-threadé, contournement WAF, live log.</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 100%"></div>
+                    </div>
+                    <span class="progress-text">Version 2.0.0</span>
+                    <div class="research-links">
+                        <a href="https://samou2.github.io/SQLIS/" target="_blank" class="research-link">
+                            <i class="fas fa-external-link-alt"></i> Site officiel
+                        </a>
+                        <a href="https://github.com/samou2/SQLIS" target="_blank" class="research-link">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                    </div>
+                    <canvas id="chart-sqli" width="200" height="80" style="margin-top: 15px; width: 100%; height: auto;"></canvas>
+                    <div class="project-feed" id="feed-sqli">
+                        <div class="feed-item"><span class="feed-time">17:10</span>💉 Ajout de 50 nouveaux payloads</div>
+                        <div class="feed-item"><span class="feed-time">16:25</span>🛡️ Contournement WAF amélioré</div>
+                        <div class="feed-item"><span class="feed-time">14:50</span>📥 Export PDF maintenant disponible</div>
+                    </div>
+                </div>
+                <!-- Carte StockVison -->
+                <div class="research-card" id="project-stockvison">
+                    <div class="research-header">
+                        <span class="status online"></span>
+                        <h3>StockVison</h3>
+                        <span class="date">2025-03-15</span>
+                    </div>
+                    <p>Gestion de stock pour supermarchés avec assistant DeepSeek. Dialoguez avec votre stock, anticipez les ruptures et analysez les ventes.</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 80%"></div>
+                    </div>
+                    <span class="progress-text">Version 1.0</span>
+                    <div class="research-links">
+                        <a href="https://samou2.github.io/StockVison/" target="_blank" class="research-link">
+                            <i class="fas fa-external-link-alt"></i> Site officiel
+                        </a>
+                        <a href="https://github.com/samou2/StockVison" target="_blank" class="research-link">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                    </div>
+                    <canvas id="chart-stockvison" width="200" height="80" style="margin-top: 15px; width: 100%; height: auto;"></canvas>
+                    <div class="project-feed" id="feed-stockvison">
+                        <div class="feed-item"><span class="feed-time">10:15</span>🤖 Assistant DeepSeek initialisé</div>
+                        <div class="feed-item"><span class="feed-time">10:16</span>📊 Analyse des produits rentables</div>
+                        <div class="feed-item"><span class="feed-time">09:45</span>📦 Nouvel import JSON effectué</div>
+                    </div>
+                </div>
+
+                <!-- Carte MS17-010 -->
+                <div class="research-card" id="project-ms17">
+                    <div class="research-header">
+                        <span class="status online"></span>
+                        <h3>Analyse Vulnérabilité MS17-010</h3>
+                        <span class="date">2026-03-16</span>
+                    </div>
+                    <p>Recherche approfondie sur l'exploit EternalBlue, analyse des variantes modernes et techniques de sécurisation.</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 75%"></div>
+                    </div>
+                    <span class="progress-text">75% complété</span>
+                    <canvas id="chart-ms17" width="200" height="80" style="margin-top: 15px; width: 100%; height: auto;"></canvas>
+                    <div class="project-feed" id="feed-ms17">
+                        <div class="feed-item"><span class="feed-time">15:45</span>🔬 Nouvelle variante détectée</div>
+                        <div class="feed-item"><span class="feed-time">14:20</span>📑 Publication d'un article technique</div>
+                        <div class="feed-item"><span class="feed-time">11:10</span>🛠️ Correctif en cours d'analyse</div>
+                    </div>
+                </div>
+
+                <!-- Carte PHP Compiler -->
+                <div class="research-card" id="project-phpcompiler">
+                    <div class="research-header">
+                        <span class="status online"></span>
+                        <h3>PHP Compiler</h3>
+                        <span class="date">2026-03-23</span>
+                    </div>
+                    <p>Analyseur lexical & syntaxique PHP. Tokenisation en temps réel, détection d'erreurs, gestion de projets et documentation intégrée.</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 100%"></div>
+                    </div>
+                    <span class="progress-text">Version 1.0</span>
+                    <div class="research-links">
+                        <a href="https://samou2.github.io/PHPCompiler/" target="_blank" class="research-link">
+                            <i class="fas fa-external-link-alt"></i> Site officiel
+                        </a>
+                        <a href="https://github.com/samou2/PHPCompiler" target="_blank" class="research-link">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                    </div>
+                    <canvas id="chart-phpcompiler" width="200" height="80" style="margin-top: 15px; width: 100%; height: auto;"></canvas>
+                    <div class="project-feed" id="feed-phpcompiler"></div>
+                </div>
+
+                <!-- Carte COVID-19 Data Analysis -->
+                <div class="research-card" id="project-covid">
+                    <div class="research-header">
+                        <span class="status online"></span>
+                        <h3>Analyse statistique COVID-19</h3>
+                        <span class="date">2026-03-23</span>
+                    </div>
+                    <p>Simulation épidémiologique en langage C avec arbres binaires de recherche. Génération aléatoire de patients, agrégation par âge, calcul de pourcentages par tranche d'âge.</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 100%"></div>
+                    </div>
+                    <span class="progress-text">Version 1.0</span>
+                    <div class="research-links">
+                        <a href="https://samou2.github.io/Gestion-et-analyse-statistique-de-donn-es-COVID-19-par-pays-et-tranches-d-ge-/" target="_blank" class="research-link">
+                            <i class="fas fa-external-link-alt"></i> Site officiel
+                        </a>
+                        <a href="https://github.com/samou2/Gestion-et-analyse-statistique-de-donn-es-COVID-19-par-pays-et-tranches-d-ge-" target="_blank" class="research-link">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                    </div>
+                    <canvas id="chart-covid" width="200" height="80" style="margin-top: 15px; width: 100%; height: auto;"></canvas>
+                    <div class="project-feed" id="feed-covid"></div>
+                </div>
+            </div>
+
+            <div class="live-feed">
+                <h3><i class="fas fa-rss"></i> Activités récentes globales</h3>
+                <div class="feed-container" id="live-feed-global"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Terminal interactif -->
+    <section class="terminal-section">
+        <div class="container">
+            <h2 class="title">
+                <i class="fas fa-terminal"></i>
+                Console interactive
+            </h2>
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <span class="terminal-dot red"></span>
+                    <span class="terminal-dot yellow"></span>
+                    <span class="terminal-dot green"></span>
+                    <span class="terminal-title">portfolio@megharba:~</span>
+                </div>
+                <div class="terminal-body" id="terminal-body">
+                    <div class="terminal-line">Bienvenue dans la console interactive.</div>
+                    <div class="terminal-line">Tapez <span class="command-highlight">help</span> pour voir les commandes disponibles.</div>
+                    <div class="terminal-line"><span class="prompt">$</span> <span id="current-input"></span></div>
+                </div>
+                <div class="terminal-input-line">
+                    <span class="prompt">$</span>
+                    <input type="text" id="terminal-input" autofocus placeholder="Entrez une commande...">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="container">
+        <h2 id="parcours" class="title">Parcours Académique</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <h4>Diplôme d'Ingénieur en Informatique - Génie Logiciel</h4>
+                <p class="location">Université Abderrahmane Mira | 2023 - Présent</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <h4>Baccalauréat Mathématiques</h4>
+                <p class="location">Lycée Mohamed Boudiaf | Moyenne : 15.05</p>
+            </div>
+        </div>
+
+        <h2 id="projets" class="title" style="margin-top: 60px;">Logiciels & Projets Majeurs</h2>
+        
+        <div class="project-filters">
+            <button class="filter-btn active" data-filter="all">Tous</button>
+            <button class="filter-btn" data-filter="dev">Développement</button>
+            <button class="filter-btn" data-filter="cyber">Cybersécurité</button>
+            <button class="filter-btn" data-filter="ai">IA</button>
+            <button class="filter-btn" data-filter="compiler">Compilateur</button>
+            <button class="filter-btn" data-filter="data">Données</button>
+        </div>
+
+        <div class="project-showcase">
+            <div class="project-detail dev">
+                <div class="icon-box"><i class="fas fa-book-reader"></i></div>
+                <div class="text-box">
+                    <h3>GTB : Gestion de Bibliothèque</h3>
+                    <p class="tech-stack">Java | Oracle SQL | JDBC </p>
+                    <p class="explanation">
+                        Système complet d'automatisation des flux documentaires. Gestion du catalogue, suivi des emprunts et des membres avec une architecture MVC garantissant la sécurité et l'intégrité des données sous Oracle SQL.
+                    </p>
+                    <a href="https://samou2.github.io/GTB/" class="btn-link" target="_blank">Site officiel <i class="fas fa-external-link-alt"></i></a>
+                    <a href="https://github.com/SAMOU2/GTB" class="btn-link" target="_blank" style="margin-left: 15px;">
+                        <i class="fab fa-github"></i> Voir sur GitHub
+                    </a>
+                </div>
+            </div>
+
+            <div class="project-detail cyber">
+                <div class="icon-box"><i class="fas fa-search-plus"></i></div>
+                <div class="text-box">
+                    <h3>Dork Searcher Ultimate (DorkLS)</h3>
+                    <p class="tech-stack">Java | Multithreading | Pentesting</p>
+                    <p class="explanation">
+                        Scanner automatisé haute performance utilisant le multithreading pour identifier des vulnérabilités web via des moteurs de recherche. Outil conçu pour le scanning de données massives.
+                    </p>
+                    <a href="https://samou2.github.io/DorkLS/" class="btn-link" target="_blank">Site officiel <i class="fas fa-external-link-alt"></i></a>
+                    <a href="https://github.com/samou2/DorkLS" class="btn-link" target="_blank" style="margin-left: 15px;">
+                        <i class="fab fa-github"></i> Voir sur GitHub
+                    </a>
+                </div>
+            </div>
+
+            <div class="project-detail cyber">
+                <div class="icon-box"><i class="fas fa-database"></i></div>
+                <div class="text-box">
+                    <h3>SQLI Scanner</h3>
+                    <p class="tech-stack">Java | Multi-threading | Pentesting | WAF Bypass</p>
+                    <p class="explanation">
+                        L'outil ultime pour détecter et exploiter les vulnérabilités SQL injection. Scan multi-threadé, gestion SSL avancée, obfuscation de payloads pour contourner les WAF, live log intégré et export des résultats. Version 2.0.0 disponible.
+                    </p>
+                    <a href="https://samou2.github.io/SQLIS/" class="btn-link" target="_blank">Site officiel <i class="fas fa-external-link-alt"></i></a>
+                    <a href="https://github.com/samou2/SQLIS" class="btn-link" target="_blank" style="margin-left: 15px;">
+                        <i class="fab fa-github"></i> Voir sur GitHub
+                    </a>
+                </div>
+            </div>
+
+            <div class="project-detail ai">
+                <div class="icon-box"><i class="fas fa-boxes"></i></div>
+                <div class="text-box">
+                    <h3>StockVison</h3>
+                    <p class="tech-stack">Java | JavaFX | MySQL (Aiven) | DeepSeek AI</p>
+                    <p class="explanation">
+                        Gestion de stock intelligente pour supermarchés propulsée par DeepSeek. Dialoguez en langage naturel avec votre stock, anticipez les ruptures, analysez les ventes et détectez les produits en fin de vie. Authentification à deux niveaux (Admin/Employé) et base de données distante.
+                    </p>
+                    <a href="https://samou2.github.io/StockVison/" class="btn-link" target="_blank">Site officiel <i class="fas fa-external-link-alt"></i></a>
+                    <a href="https://github.com/samou2/StockVison" class="btn-link" target="_blank" style="margin-left: 15px;">
+                        <i class="fab fa-github"></i> Voir sur GitHub
+                    </a>
+                </div>
+            </div>
+
+            <div class="project-detail cyber">
+                <div class="icon-box"><i class="fas fa-shield-alt"></i></div>
+                <div class="text-box">
+                    <h3>Recherche Vulnérabilité MS17-010</h3>
+                    <p class="tech-stack">Cybersécurité | EternalBlue | Windows</p>
+                    <p class="explanation">
+                        Analyse approfondie de l'exploit EternalBlue sur réseaux locaux. Simulation d'attaques en environnement contrôlé et rédaction de rapports de sécurisation contre les ransomwares.
+                    </p>
+                </div>
+            </div>
+
+            <div class="project-detail compiler">
+                <div class="icon-box"><i class="fab fa-php"></i></div>
+                <div class="text-box">
+                    <h3>PHP Compiler</h3>
+                    <p class="tech-stack">Java | JavaFX | Analyse lexicale & syntaxique | Regex | Gestion de projet</p>
+                    <p class="explanation">
+                        Compilateur minimaliste pour PHP : tokenisation en temps réel, validation de la grammaire, détection d'erreurs instantanée,
+                        table des tokens, statistiques de code (lignes, commentaires, fonctions, classes). Interface moderne avec documentation intégrée,
+                        mode plein écran et gestion de projets (ouverture de dossiers entiers).
+                    </p>
+                    <a href="https://samou2.github.io/PHPCompiler/" class="btn-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i> Site officiel
+                    </a>
+                    <a href="https://github.com/samou2/PHPCompiler" class="btn-link" target="_blank" style="margin-left: 15px;">
+                        <i class="fab fa-github"></i> Voir sur GitHub
+                    </a>
+                </div>
+            </div>
+
+            <!-- Analyse COVID-19 -->
+            <div class="project-detail data">
+                <div class="icon-box"><i class="fas fa-chart-line"></i></div>
+                <div class="text-box">
+                    <h3>Analyse statistique COVID-19</h3>
+                    <p class="tech-stack">C | Arbres binaires de recherche | Structures de données | Simulation épidémiologique</p>
+                    <p class="explanation">
+                        Simulation épidémiologique en langage C générant aléatoirement des patients (nom, prénom, âge, résultat) pour 10 pays. Organisation par pays, tri global par âge, et construction d'un arbre binaire de recherche (ABR) indexé par l'âge pour des analyses rapides. Permet de calculer les pourcentages de décès/guérison par tranche d'âge via parcours de l'ABR. Export de l'arbre dans un fichier texte.
+                    </p>
+                    <a href="https://samou2.github.io/Gestion-et-analyse-statistique-de-donn-es-COVID-19-par-pays-et-tranches-d-ge-/" class="btn-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i> Site officiel
+                    </a>
+                    <a href="https://github.com/samou2/Gestion-et-analyse-statistique-de-donn-es-COVID-19-par-pays-et-tranches-d-ge-" class="btn-link" target="_blank" style="margin-left: 15px;">
+                        <i class="fab fa-github"></i> Voir sur GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <h2 id="competences" class="title" style="margin-top: 60px;">Compétences Techniques</h2>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h4>Développement</h4>
+                <div class="tags">
+                    <span>Java</span><span>Python</span><span>C</span><span>JavaScript</span><span>SQL</span><span>PHP</span><span>Assembleur</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h4>Expertise & Outils</h4>
+                <div class="tags">
+                    <span>Cybersécurité</span><span>Oracle DB</span><span>Linux</span><span>Git</span><span>Three.js</span><span>WiX Toolset</span><span>DeepSeek</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number" data-target="7">0</div>
+                <div class="stat-label">Projets</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" data-target="3">0</div>
+                <div class="stat-label">Années d'expérience</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" data-target="100">0</div>
+                <div class="stat-label">Pull requests</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="days-experience">0</div>
+                <div class="stat-label">Jours d'expérience</div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Graphique des technologies -->
+    <section id="tech-chart-section" class="tech-chart-section">
+        <div class="container">
+            <h2 class="title">
+                <i class="fas fa-chart-pie"></i>
+                Technologies utilisées
+            </h2>
+            <div class="chart-container">
+                <canvas id="techChart" width="400" height="400" style="max-width: 400px; margin: 0 auto;"></canvas>
+            </div>
+            <p class="chart-note">Répartition des langages dans mes projets</p>
+        </div>
+    </section>
+
+    <!-- Section Contact -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2 class="title">Contactez-<span style="color: var(--primary);">moi</span></h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Restons en contact</h3>
+                    <div class="contact-detail">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:samoumegharba210@gmail.com">samoumegharba210@gmail.com</a>
+                    </div>
+                    <div class="contact-detail">
+                        <i class="fab fa-github"></i>
+                        <a href="https://github.com/samou2" target="_blank">github.com/samou2</a>
+                    </div>
+                    <div class="contact-detail">
+                        <i class="fab fa-linkedin"></i>
+                        <a href="https://linkedin.com/in/samou megharba" target="_blank">linkedin.com/in/samou megharba</a>
+                    </div>
+                    <div class="contact-detail">
+                        <i class="fab fa-facebook"></i>
+                        <a href="https://www.facebook.com/Bert Rand" target="_blank">facebook.com/Bert Rand</a>
+                    </div>
+                    <div class="meet-card">
+                        <i class="fab fa-google"></i>
+                        <h3>Entretiens à distance</h3>
+                        <p>Disponible pour des échanges en visioconférence via Google Meet.</p>
+                        <a href="https://meet.google.com/aew-euvh-cex" target="_blank" class="meet-btn">
+                            <i class="fas fa-video"></i> Rejoindre le salon
+                        </a>
+                        <p class="meet-note">Cliquez pour démarrer une réunion immédiate.</p>
+                    </div>
+                </div>
+                <form class="contact-form" action="https://formspree.io/f/mbdzwadz" method="POST">
+                    <div class="form-group">
+                        <label>Nom</label>
+                        <input type="text" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" name="_replyto" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea name="message" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">Envoyer</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>Télécharger</h3>
+                <div class="download-badges">
+                    <a href="CV.pdf" download class="badge-btn"><i class="fas fa-file-pdf"></i> Mon CV</a>
+                    <a href="https://samou2.github.io/GTB/" target="_blank" class="badge-btn"><i class="fas fa-book"></i> GTB</a>
+                    <a href="https://samou2.github.io/DorkLS/" target="_blank" class="badge-btn"><i class="fas fa-search"></i> DorkLS</a>
+                    <a href="https://samou2.github.io/SQLIS/" target="_blank" class="badge-btn"><i class="fas fa-database"></i> SQLI Scanner</a>
+                    <a href="https://samou2.github.io/StockVison/" target="_blank" class="badge-btn"><i class="fas fa-boxes"></i> StockVison</a>
+                    <a href="https://samou2.github.io/PHPCompiler/" target="_blank" class="badge-btn"><i class="fab fa-php"></i> PHP Compiler</a>
+                    <a href="https://samou2.github.io/Gestion-et-analyse-statistique-de-donn-es-COVID-19-par-pays-et-tranches-d-ge-/" target="_blank" class="badge-btn"><i class="fas fa-chart-line"></i> COVID-19</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Suivez-moi</h3>
+                <div class="footer-socials">
+                    <a href="https://github.com/samou2" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/samou megharba" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.facebook.com/Bert Rand" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+                </div>
+                <div class="quote-box">
+                    <i class="fas fa-quote-left"></i> <span id="quote-text">Chargement...</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 MEGHARBA SAMOU – Ingénieur en Génie Logiciel & Cybersécurité</p>
+        </div>
+    </footer>
+
+    <button id="settings-toggle" class="settings-btn" aria-label="Paramètres">
+        <i class="fas fa-cog"></i>
+    </button>
+
+    <div id="settings-panel" class="settings-panel">
+        <div class="settings-header">
+            <h3>Paramètres du portfolio</h3>
+            <button id="settings-close" class="settings-close">&times;</button>
+        </div>
+        <div class="settings-content">
+            <div class="setting-item">
+                <label>Couleur principale</label>
+                <input type="color" id="primary-color" value="#00d2ff">
+            </div>
+            <div class="setting-item">
+                <label>Couleur secondaire</label>
+                <input type="color" id="secondary-color" value="#64ffda">
+            </div>
+            <div class="setting-item">
+                <label>Nombre de particules</label>
+                <input type="range" id="particle-count" min="50" max="200" step="10" value="120">
+                <span id="particle-count-value">120</span>
+            </div>
+            <div class="setting-item">
+                <label>Vitesse du flux global (secondes)</label>
+                <input type="range" id="feed-speed" min="5" max="30" step="1" value="12">
+                <span id="feed-speed-value">12</span>
+            </div>
+            <div class="setting-item">
+                <label>Thème</label>
+                <div class="toggle-switch">
+                    <input type="checkbox" id="theme-toggle" class="toggle-input">
+                    <label for="theme-toggle" class="toggle-label"></label>
+                    <span id="theme-status">Sombre</span>
+                </div>
+            </div>
+            <div class="setting-item">
+                <label>Particules</label>
+                <div class="toggle-switch">
+                    <input type="checkbox" id="particles-toggle" class="toggle-input" checked>
+                    <label for="particles-toggle" class="toggle-label"></label>
+                    <span id="particles-status">Activées</span>
+                </div>
+            </div>
+            <div class="setting-item">
+                <label>Vitesse de rotation de la Terre</label>
+                <input type="range" id="earth-speed" min="0" max="0.01" step="0.0005" value="0.002">
+                <span id="earth-speed-value">0.002</span>
+            </div>
+            <div class="setting-item">
+                <label>Animations au scroll</label>
+                <div class="toggle-switch">
+                    <input type="checkbox" id="scroll-animation-toggle" class="toggle-input" checked>
+                    <label for="scroll-animation-toggle" class="toggle-label"></label>
+                    <span id="scroll-animation-status">Activées</span>
+                </div>
+            </div>
+            <div class="setting-item">
+                <button id="reset-settings" class="reset-btn">Réinitialiser</button>
+            </div>
+        </div>
+    </div>
+    <!-- Chatbot flottant -->
+<div id="chatbot" class="chatbot">
+    <div class="chatbot-toggle">
+        <i class="fas fa-comment-dots"></i>
+    </div>
+    <div class="chatbot-window">
+        <div class="chatbot-header">
+            <span>Assistant Portfolio</span>
+            <button class="chatbot-close"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="chatbot-messages" id="chatbot-messages">
+            <div class="message bot">Bonjour 👋 Je suis votre assistant virtuel. Posez-moi une question sur mes projets, compétences ou contact.</div>
+        </div>
+        <div class="chatbot-suggestions" id="chatbot-suggestions">
+            <button class="suggestion">Mes projets</button>
+            <button class="suggestion">Compétences</button>
+            <button class="suggestion">Contact</button>
+            <button class="suggestion">CV</button>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" id="chatbot-input" placeholder="Écrivez votre message...">
+            <button id="chatbot-send"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+</div>
+
+    <script src="script.js"></script>
+</body>
+</html>
