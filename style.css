@@ -2560,3 +2560,148 @@ html, body {
         font-size: 0.8rem !important;
     }
 }
+/* ============================= */
+/* RESPONSIVE RESTONS EN CONTACT */
+/* ============================= */
+
+.contact-section {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+.contact-info,
+.contact-form {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+}
+
+.contact-detail {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    min-width: 0;
+}
+
+.contact-detail i {
+    flex-shrink: 0;
+}
+
+.contact-detail a,
+.contact-detail span {
+    min-width: 0;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+}
+
+/* Tablette */
+@media (max-width: 1024px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .contact-section {
+        padding: 40px 15px;
+    }
+
+    .contact-info,
+    .contact-form {
+        padding: 1.5rem;
+    }
+
+    .contact-detail {
+        align-items: flex-start;
+    }
+}
+
+/* Petit mobile */
+@media (max-width: 480px) {
+    .contact-section {
+        padding: 30px 12px;
+    }
+
+    .contact-detail {
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .contact-detail i {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+    }
+
+    .contact-detail a,
+    .contact-detail span {
+        font-size: 0.85rem;
+    }
+
+    .contact-info,
+    .contact-form {
+        padding: 1rem;
+        border-radius: 16px;
+    }
+}
+/* ============================= */
+/* RESPONSIVE CERCLE TECHNOLOGIE */
+/* ============================= */
+
+.tech-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tech-chart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+/* Canvas du cercle */
+#techChart {
+    max-width: 350px;
+    width: 100% !important;
+    height: auto !important;
+    margin: 0 auto;
+}
+
+/* Tablette */
+@media (max-width: 1024px) {
+    #techChart {
+        max-width: 300px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .tech-section {
+        padding: 20px 10px;
+        text-align: center;
+    }
+
+    #techChart {
+        max-width: 260px;
+    }
+}
+
+/* Petit mobile */
+@media (max-width: 480px) {
+    #techChart {
+        max-width: 220px;
+    }
+}
