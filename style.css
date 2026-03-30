@@ -2664,7 +2664,12 @@ html, body {
         font-size: 12px;
     }
 }
-
+.contact-item span,
+.contact-item a {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 /* ============================= */
 /* RESPONSIVE CERCLE TECHNOLOGIE */
 /* ============================= */
