@@ -2564,96 +2564,107 @@ html, body {
 /* RESPONSIVE RESTONS EN CONTACT */
 /* ============================= */
 
-.contact-section {
+/* ===== SECTION CONTACT ===== */
+.contact-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
     width: 100%;
-    max-width: 100%;
-    overflow: hidden;
 }
 
-.contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    align-items: start;
-}
-
-.contact-info,
-.contact-form {
-    width: 100%;
-    max-width: 100%;
-    min-width: 0;
-}
-
-.contact-detail {
+/* Chaque item */
+.contact-item {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    min-width: 0;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 12px 15px;
+    border-radius: 10px;
+    transition: 0.3s;
+    flex-wrap: nowrap; /* ✅ reste sur une ligne */
 }
 
-.contact-detail i {
-    flex-shrink: 0;
+/* Hover */
+.contact-item:hover {
+    background: rgba(0, 210, 255, 0.1);
+    transform: translateX(5px);
 }
 
-.contact-detail a,
-.contact-detail span {
-    min-width: 0;
+/* Icône */
+.contact-item i {
+    font-size: 18px;
+    color: var(--primary);
+    min-width: 25px;
+    text-align: center;
+    flex-shrink: 0; /* ✅ empêche de rétrécir */
+}
+
+/* Texte */
+.contact-item span,
+.contact-item a {
+    color: #ccd6f6;
+    font-size: 14px;
+    text-decoration: none;
     word-break: break-word;
-    overflow-wrap: anywhere;
+    overflow-wrap: anywhere; /* ✅ évite débordement */
 }
 
-/* Tablette */
-@media (max-width: 1024px) {
-    .contact-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
+/* ===== TABLETTE ===== */
+@media (max-width: 992px) {
+    .contact-container {
+        gap: 12px;
+    }
+
+    .contact-item {
+        padding: 11px 14px;
+    }
+
+    .contact-item span,
+    .contact-item a {
+        font-size: 13.5px;
     }
 }
 
-/* Mobile */
+/* ===== MOBILE ===== */
 @media (max-width: 768px) {
-    .contact-section {
-        padding: 40px 15px;
+    .contact-container {
+        gap: 10px;
     }
 
-    .contact-info,
-    .contact-form {
-        padding: 1.5rem;
+    .contact-item {
+        padding: 10px;
+        gap: 10px;
     }
 
-    .contact-detail {
-        align-items: flex-start;
+    .contact-item i {
+        font-size: 16px;
+        min-width: 22px;
+    }
+
+    .contact-item span,
+    .contact-item a {
+        font-size: 13px;
     }
 }
 
-/* Petit mobile */
+/* ===== PETIT MOBILE ===== */
 @media (max-width: 480px) {
-    .contact-section {
-        padding: 30px 12px;
+    .contact-item {
+        padding: 9px;
+        gap: 8px;
     }
 
-    .contact-detail {
-        flex-direction: column;
-        gap: 6px;
+    .contact-item i {
+        font-size: 15px;
+        min-width: 20px;
     }
 
-    .contact-detail i {
-        width: 36px;
-        height: 36px;
-        font-size: 1rem;
-    }
-
-    .contact-detail a,
-    .contact-detail span {
-        font-size: 0.85rem;
-    }
-
-    .contact-info,
-    .contact-form {
-        padding: 1rem;
-        border-radius: 16px;
+    .contact-item span,
+    .contact-item a {
+        font-size: 12px;
     }
 }
+
 /* ============================= */
 /* RESPONSIVE CERCLE TECHNOLOGIE */
 /* ============================= */
