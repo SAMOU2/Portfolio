@@ -2566,111 +2566,195 @@ html, body {
 
 /* ===== SECTION CONTACT ===== */
 /* ===== SECTION CONTACT ===== */
-.contact-container {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+/* ========================= */
+/* CONTACT SECTION CONTAINER */
+/* ========================= */
+
+.contact-section {
+    padding: 60px 20px;
+}
+
+.contact-section .container {
+    max-width: 1100px;
+    margin: auto;
+}
+
+/* TITRE */
+.contact-section .title {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+/* ========================= */
+/* GRID PRINCIPAL */
+/* ========================= */
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+}
+
+/* ========================= */
+/* PARTIE INFOS CONTACT */
+/* ========================= */
+
+.contact-info {
     width: 100%;
 }
 
-.contact-item {
-    display: flex;
-    flex-direction: row !important;
-    align-items: center !important;
-    justify-content: flex-start;
-    gap: 12px;
-    width: 100%;
-    min-width: 0;
-    background: rgba(255, 255, 255, 0.05);
-    padding: 12px 15px;
-    border-radius: 10px;
-    transition: 0.3s;
-    flex-wrap: nowrap !important;
-}
-
-.contact-item:hover {
-    background: rgba(0, 210, 255, 0.1);
-    transform: translateX(5px);
-}
-
-.contact-item i {
-    width: 38px;
-    height: 38px;
+/* CHAQUE LIGNE CONTACT */
+.contact-detail {
     display: flex;
     align-items: center;
-    justify-content: center;
-    flex: 0 0 38px;
-    font-size: 18px;
-    color: var(--primary);
-    text-align: center;
-    border-radius: 50%;
+    gap: 12px;
+    margin-bottom: 14px;
+    width: 100%;
+    min-width: 0;
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.04);
+    transition: 0.3s ease;
+}
+
+/* hover */
+.contact-detail:hover {
+    transform: translateX(5px);
     background: rgba(0, 210, 255, 0.08);
 }
 
-.contact-item span,
-.contact-item a {
-    flex: 1 1 auto;
+/* ICÔNE */
+.contact-detail i {
+    width: 38px;
+    height: 38px;
+    flex: 0 0 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: var(--primary);
+    border-radius: 50%;
+    background: rgba(0, 210, 255, 0.1);
+}
+
+/* TEXTE / LIEN */
+.contact-detail a {
+    flex: 1;
     min-width: 0;
     color: #ccd6f6;
     font-size: 14px;
     text-decoration: none;
+
+    /* 🔥 empêche casse ligne */
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-/* ===== TABLETTE ===== */
-@media (max-width: 992px) {
-    .contact-item {
-        padding: 11px 14px;
-    }
+/* ========================= */
+/* FORMULAIRE CONTACT */
+/* ========================= */
 
-    .contact-item span,
-    .contact-item a {
-        font-size: 13.5px;
+.contact-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-form .form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-form label {
+    margin-bottom: 6px;
+    font-size: 14px;
+    color: #ccd6f6;
+}
+
+.contact-form input,
+.contact-form textarea {
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+}
+
+/* bouton */
+.btn-submit {
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: var(--primary);
+    color: #000;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-submit:hover {
+    opacity: 0.85;
+    transform: translateY(-2px);
+}
+
+/* ========================= */
+/* RESPONSIVE TABLETTE */
+/* ========================= */
+
+@media (max-width: 992px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
     }
 }
 
-/* ===== MOBILE ===== */
+/* ========================= */
+/* MOBILE */
+/* ========================= */
+
 @media (max-width: 768px) {
-    .contact-container {
-        gap: 10px;
+    .contact-section {
+        padding: 40px 15px;
     }
 
-    .contact-item {
+    .contact-detail {
+        gap: 10px;
         padding: 10px;
-        gap: 10px;
     }
 
-    .contact-item i {
-        width: 34px;
-        height: 34px;
-        flex-basis: 34px;
-        font-size: 16px;
+    .contact-detail i {
+        width: 32px;
+        height: 32px;
+        flex: 0 0 32px;
+        font-size: 15px;
     }
 
-    .contact-item span,
-    .contact-item a {
+    .contact-detail a {
         font-size: 13px;
     }
 }
 
-/* ===== PETIT MOBILE ===== */
+/* ========================= */
+/* PETIT MOBILE */
+/* ========================= */
+
 @media (max-width: 480px) {
-    .contact-item {
-        padding: 9px;
+    .contact-detail {
         gap: 8px;
     }
 
-    .contact-item i {
-        width: 32px;
-        height: 32px;
-        flex-basis: 32px;
-        font-size: 15px;
+    .contact-detail i {
+        width: 28px;
+        height: 28px;
+        flex: 0 0 28px;
+        font-size: 14px;
     }
 
-    .contact-item span,
-    .contact-item a {
+    .contact-detail a {
         font-size: 12px;
     }
 }
