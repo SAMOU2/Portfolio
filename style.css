@@ -2564,10 +2564,10 @@ html, body {
 /* RESPONSIVE RESTONS EN CONTACT */
 /* ============================= */
 
-/* ===== SECTION CONTACT ===== */
-/* ===== SECTION CONTACT ===== */
+
+
 /* ========================= */
-/* CONTACT SECTION CONTAINER */
+/* CONTACT PANEL LAYOUT FIX  */
 /* ========================= */
 
 .contact-section {
@@ -2585,43 +2585,39 @@ html, body {
     margin-bottom: 40px;
 }
 
-/* ========================= */
-/* GRID PRINCIPAL */
-/* ========================= */
-
+/* ===== PANEL PRINCIPAL ===== */
 .contact-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 40px;
-    align-items: start;
+    align-items: stretch; /* 🔥 même hauteur */
 }
 
-/* ========================= */
-/* PARTIE INFOS CONTACT */
-/* ========================= */
-
-.contact-info {
+/* ===== PANELS ===== */
+.contact-info,
+.contact-form {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 25px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
     width: 100%;
+    min-width: 0;
 }
 
-/* CHAQUE LIGNE CONTACT */
+/* ===== ALIGNEMENT CONTACT ===== */
 .contact-detail {
     display: flex;
     align-items: center;
     gap: 12px;
     margin-bottom: 14px;
-    width: 100%;
-    min-width: 0;
     padding: 10px 12px;
     border-radius: 10px;
-    background: rgba(255, 255, 255, 0.04);
-    transition: 0.3s ease;
+    transition: 0.3s;
 }
 
-/* hover */
 .contact-detail:hover {
-    transform: translateX(5px);
     background: rgba(0, 210, 255, 0.08);
+    transform: translateX(5px);
 }
 
 /* ICÔNE */
@@ -2638,34 +2634,24 @@ html, body {
     background: rgba(0, 210, 255, 0.1);
 }
 
-/* TEXTE / LIEN */
+/* TEXTE */
 .contact-detail a {
     flex: 1;
     min-width: 0;
     color: #ccd6f6;
     font-size: 14px;
     text-decoration: none;
-
-    /* 🔥 empêche casse ligne */
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
 /* ========================= */
-/* FORMULAIRE CONTACT */
-/* ========================= */
-
-.contact-form {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
+/* FORMULAIRE */
 .contact-form .form-group {
     display: flex;
     flex-direction: column;
+    margin-bottom: 15px;
 }
 
 .contact-form label {
@@ -2684,7 +2670,6 @@ html, body {
     color: #fff;
 }
 
-/* bouton */
 .btn-submit {
     padding: 12px;
     border: none;
@@ -2697,33 +2682,29 @@ html, body {
 }
 
 .btn-submit:hover {
-    opacity: 0.85;
     transform: translateY(-2px);
+    opacity: 0.85;
 }
 
 /* ========================= */
-/* RESPONSIVE TABLETTE */
-/* ========================= */
-
+/* TABLETTE */
 @media (max-width: 992px) {
     .contact-grid {
         grid-template-columns: 1fr;
-        gap: 30px;
+        gap: 25px;
     }
 }
 
 /* ========================= */
 /* MOBILE */
-/* ========================= */
-
 @media (max-width: 768px) {
     .contact-section {
         padding: 40px 15px;
     }
 
-    .contact-detail {
-        gap: 10px;
-        padding: 10px;
+    .contact-info,
+    .contact-form {
+        padding: 20px;
     }
 
     .contact-detail i {
@@ -2740,11 +2721,10 @@ html, body {
 
 /* ========================= */
 /* PETIT MOBILE */
-/* ========================= */
-
 @media (max-width: 480px) {
-    .contact-detail {
-        gap: 8px;
+    .contact-info,
+    .contact-form {
+        padding: 15px;
     }
 
     .contact-detail i {
@@ -2758,6 +2738,8 @@ html, body {
         font-size: 12px;
     }
 }
+
+
 /* ============================= */
 /* RESPONSIVE CERCLE TECHNOLOGIE */
 /* ============================= */
