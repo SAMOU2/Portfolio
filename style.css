@@ -2565,6 +2565,7 @@ html, body {
 /* ============================= */
 
 /* ===== SECTION CONTACT ===== */
+/* ===== SECTION CONTACT ===== */
 .contact-container {
     display: flex;
     flex-direction: column;
@@ -2572,49 +2573,54 @@ html, body {
     width: 100%;
 }
 
-/* Chaque item */
 .contact-item {
     display: flex;
-    align-items: center;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-start;
     gap: 12px;
+    width: 100%;
+    min-width: 0;
     background: rgba(255, 255, 255, 0.05);
     padding: 12px 15px;
     border-radius: 10px;
     transition: 0.3s;
-    flex-wrap: nowrap; /* ✅ reste sur une ligne */
+    flex-wrap: nowrap !important;
 }
 
-/* Hover */
 .contact-item:hover {
     background: rgba(0, 210, 255, 0.1);
     transform: translateX(5px);
 }
 
-/* Icône */
 .contact-item i {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 38px;
     font-size: 18px;
     color: var(--primary);
-    min-width: 25px;
     text-align: center;
-    flex-shrink: 0; /* ✅ empêche de rétrécir */
+    border-radius: 50%;
+    background: rgba(0, 210, 255, 0.08);
 }
 
-/* Texte */
 .contact-item span,
 .contact-item a {
+    flex: 1 1 auto;
+    min-width: 0;
     color: #ccd6f6;
     font-size: 14px;
     text-decoration: none;
-    word-break: break-word;
-    overflow-wrap: anywhere; /* ✅ évite débordement */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 /* ===== TABLETTE ===== */
 @media (max-width: 992px) {
-    .contact-container {
-        gap: 12px;
-    }
-
     .contact-item {
         padding: 11px 14px;
     }
@@ -2637,8 +2643,10 @@ html, body {
     }
 
     .contact-item i {
+        width: 34px;
+        height: 34px;
+        flex-basis: 34px;
         font-size: 16px;
-        min-width: 22px;
     }
 
     .contact-item span,
@@ -2655,20 +2663,16 @@ html, body {
     }
 
     .contact-item i {
+        width: 32px;
+        height: 32px;
+        flex-basis: 32px;
         font-size: 15px;
-        min-width: 20px;
     }
 
     .contact-item span,
     .contact-item a {
         font-size: 12px;
     }
-}
-.contact-item span,
-.contact-item a {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 /* ============================= */
 /* RESPONSIVE CERCLE TECHNOLOGIE */
