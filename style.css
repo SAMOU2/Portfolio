@@ -3125,3 +3125,25 @@ html, body {
         font-size: 0.6rem;
     }
 }
+/* Forcer l’affichage du bouton d’envoi du chatbot */
+.chatbot-input button {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: var(--primary);
+    color: var(--bg-dark);
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border: none;
+    transition: transform 0.2s;
+}
+.chatbot-input button:hover {
+    transform: scale(1.05);
+}
+.chatbot-input button i {
+    margin: 0;
+    font-size: 1.2rem;
+}
