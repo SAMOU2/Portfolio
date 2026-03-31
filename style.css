@@ -1221,9 +1221,6 @@ body.light-theme .menu-items a {
     100% { background-color: #ff0000; }
 }
 
-/* ===================================================
-   MEDIA QUERIES GÉNÉRALES
-   =================================================== */
 @media (max-width: 992px) {
     .container { padding: 40px 20px; }
 }
@@ -1497,6 +1494,7 @@ a{
     }
 }
 
+/* Conteneur du graphique */
 /* Section Technologies enrichie */
 .tech-section {
     padding: 60px 0;
@@ -1614,10 +1612,8 @@ a{
         font-size: 0.8rem;
     }
 }
-
-/* ===================================================
-   CHATBOT FLOTTANT (CORRIGÉ ET RESPONSIF)
-   =================================================== */
+/* Chatbot flottant */
+/* Chatbot flottant - Version responsive corrigée */
 .chatbot {
     position: fixed;
     bottom: 90px;
@@ -1707,7 +1703,6 @@ a{
     align-self: flex-end;
     border-bottom-right-radius: 5px;
 }
-/* Suggestions */
 .chatbot-suggestions {
     display: flex;
     flex-wrap: wrap;
@@ -1816,11 +1811,1037 @@ a{
         font-size: 0.7rem;
     }
 }
+/* ===================================================
+   SYSTÈME DE RESPONSIVITÉ GLOBAL (ANTI-BUG)
+   =================================================== */
+
+/* 1. Sécurité de base pour éviter le scroll horizontal */
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+    position: relative;
+    width: 100%;
+}
+
+* {
+    box-sizing: border-box; /* Crucial pour que les paddings ne cassent pas la largeur */
+}
+
+/* --- LARGE TABLETS & SMALL LAPTOPS (max 1024px) --- */
+@media (max-width: 1024px) {
+    .tech-grid, 
+    .contact-grid {
+        grid-template-columns: 1fr !important;
+        gap: 2.5rem;
+    }
+    
+    .luxury-card {
+        margin: -30px 20px 0;
+        padding: 25px;
+    }
+}
+
+/* --- TABLETS PORTRAIT (max 768px) --- */
+@media (max-width: 768px) {
+    /* Menu & Navigation */
+    .menu {
+        width: 95%;
+        padding: 0.8rem 1.5rem;
+    }
+    
+    .menu-items {
+        display: none; /* Cache les liens texte pour laisser place à un futur menu burger */
+    }
+
+    /* Grilles de compétences */
+    .tech-skills {
+        grid-template-columns: 1fr !important; /* Force une seule colonne */
+    }
+
+    /* Terminal & Contenu */
+    .terminal-body {
+        height: 250px;
+        font-size: 0.85rem;
+    }
+
+    .card-inner {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .photo-container {
+        width: 140px;
+        height: 140px;
+        margin: 0 auto;
+    }
+
+    /* Gestion des boutons flottants */
+    .chatbot {
+        right: 15px;
+        bottom: 85px; /* On le monte pour ne pas cacher le bouton settings */
+    }
+
+    .chatbot-window {
+        width: calc(100vw - 30px);
+        right: 0;
+        height: 400px;
+    }
+}
+
+/* --- SMARTPHONES (max 480px) --- */
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 1.8rem;
+        line-height: 1.2;
+    }
+
+    /* Boutons de contrôle (Settings + Chatbot) */
+    .settings-btn {
+        width: 45px;
+        height: 45px;
+        bottom: 15px;
+        right: 15px;
+    }
+
+    .chatbot {
+        bottom: 75px; /* Juste au dessus du bouton settings */
+        right: 15px;
+    }
+
+    /* Chatbot en mode "Full Screen" pour le confort de frappe */
+    .chatbot-window {
+        position: fixed;
+        width: 100vw;
+        height: 85vh; /* Prend presque tout l'écran */
+        bottom: 0;
+        right: 0;
+        border-radius: 20px 20px 0 0;
+        z-index: 2000;
+    }
+
+    /* Formulaires & Inputs */
+    .contact-form input, 
+    .contact-form textarea {
+        font-size: 16px; /* Évite le zoom automatique sur iPhone */
+    }
+
+    .contact-detail {
+        flex-direction: column;
+        text-align: center;
+        padding: 10px;
+    }
+
+    /* Compétences */
+    .skill-card {
+        padding: 0.8rem;
+    }
+}
+
+/* --- FIX POUR LES ÉCRANS TRÈS PETITS OU PAYSAGE --- */
+@media (max-height: 500px) and (orientation: landscape) {
+    .chatbot-window {
+        height: 95vh;
+    }
+    .terminal-body {
+        height: 150px;
+    }
+}
+/* ============================= */
+/* LIVE RESEARCH RESPONSIVE FIX  */
+/* ============================= */
+
+/* Base sécurité */
+.live-research,
+.live-feed,
+.research-section {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+/* GRID propre */
+.research-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+/* CARD FIX */
+.research-card {
+    width: 100%;
+    min-width: 0;
+    overflow: hidden;
+}
+
+/* TEXT FIX */
+.research-card h3,
+.research-card p {
+    word-break: break-word;
+}
+
+/* ============================= */
+/* TABLETTE                     */
+/* ============================= */
+
+@media (max-width: 1024px) {
+
+    .research-grid {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    .research-card {
+        padding: 18px;
+    }
+}
+
+/* ============================= */
+/* MOBILE                       */
+/* ============================= */
+
+@media (max-width: 768px) {
+
+    .research-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .research-card {
+        padding: 16px;
+    }
+
+    .research-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .research-links {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+}
+
+/* ============================= */
+/* SMALL MOBILE                 */
+/* ============================= */
+
+@media (max-width: 480px) {
+
+    .research-card {
+        padding: 14px;
+        border-radius: 12px;
+    }
+
+    .research-card h3 {
+        font-size: 1rem;
+    }
+
+    .research-card p {
+        font-size: 0.85rem;
+    }
+}
+
+/* ============================= */
+/* EXTRA SMALL                  */
+/* ============================= */
+
+@media (max-width: 360px) {
+
+    .research-card {
+        padding: 12px;
+    }
+}
+/* ============================= */
+/* CONTACT RESPONSIVE FIX        */
+/* ============================= */
+
+/* sécurité globale */
+.contact-section,
+.contact-grid,
+.contact-info,
+.contact-form {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+/* layout desktop propre */
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+/* texte et items */
+.contact-detail {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.contact-detail a {
+    word-break: break-word;
+}
+
+/* ============================= */
+/* TABLETTE                     */
+/* ============================= */
+
+@media (max-width: 1024px) {
+
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ============================= */
+/* MOBILE                       */
+/* ============================= */
+
+@media (max-width: 768px) {
+
+    .contact-grid {
+        grid-template-columns: 1fr !important;
+        gap: 15px;
+    }
+
+    .contact-info,
+    .contact-form {
+        padding: 16px;
+    }
+
+    .contact-detail {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+}
+
+/* ============================= */
+/* SMALL MOBILE                 */
+/* ============================= */
+
+@media (max-width: 480px) {
+
+    .contact-detail {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+
+    .contact-detail i {
+        font-size: 1rem;
+    }
+
+    .contact-detail a {
+        font-size: 0.85rem;
+    }
+
+    .contact-info,
+    .contact-form {
+        padding: 14px;
+        border-radius: 12px;
+    }
+}
+
+/* ============================= */
+/* EXTRA SMALL                  */
+/* ============================= */
+
+@media (max-width: 360px) {
+
+    .contact-info,
+    .contact-form {
+        padding: 12px;
+    }
+}
+/* ============================= */
+/* TECHNOLOGIES UTILISÉES FIX    */
+/* ============================= */
+
+/* sécurité globale */
+.tech-section,
+.tech-grid,
+.tech-skills,
+.tech-card {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+/* layout desktop */
+.tech-grid,
+.tech-skills {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+/* carte tech */
+.tech-card {
+    min-width: 0;
+    word-break: break-word;
+}
+
+/* ============================= */
+/* TABLETTE                     */
+/* ============================= */
+
+@media (max-width: 1024px) {
+
+    .tech-grid,
+    .tech-skills {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+}
+
+/* ============================= */
+/* MOBILE                       */
+/* ============================= */
+
+@media (max-width: 768px) {
+
+    .tech-grid,
+    .tech-skills {
+        grid-template-columns: 1fr;
+    }
+
+    .tech-card {
+        padding: 16px;
+    }
+}
+
+/* ============================= */
+/* SMALL MOBILE                 */
+/* ============================= */
+
+@media (max-width: 480px) {
+
+    .tech-card {
+        padding: 14px;
+        border-radius: 12px;
+    }
+
+    .tech-card h3 {
+        font-size: 1rem;
+    }
+
+    .tech-card p {
+        font-size: 0.85rem;
+    }
+}
+
+/* ============================= */
+/* EXTRA SMALL                  */
+/* ============================= */
+
+@media (max-width: 360px) {
+
+    .tech-card {
+        padding: 12px;
+    }
+}
+/* ============================= */
+/* CONTACT ALIGNEMENT FIX        */
+/* ============================= */
+
+/* chaque ligne contact propre */
+.contact-detail {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* icône toujours alignée */
+.contact-detail i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 38px;
+    min-height: 38px;
+    flex-shrink: 0;
+}
+
+/* texte reste sur une seule ligne proprement */
+.contact-detail a,
+.contact-detail span {
+    word-break: break-word;
+}
+
+/* ============================= */
+/* MOBILE CONTACT FIX            */
+/* ============================= */
+
+@media (max-width: 768px) {
+
+    .contact-detail {
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .contact-detail {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+
+    .contact-detail i {
+        margin-bottom: 4px;
+    }
+}
+
+/* ============================= */
+/* TECHNOLOGIES ICON / CIRCLE FIX */
+/* ============================= */
+
+/* centrage parfait des cercles ou icônes */
+.tech-card,
+.tech-item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+}
+
+/* cercle / icône */
+.tech-card .icon,
+.tech-item .icon,
+.tech-card i,
+.tech-item i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-left: 0 !important;
+}
+
+/* ============================= */
+/* MOBILE TECHNOLOGIES FIX       */
+/* ============================= */
+
+@media (max-width: 768px) {
+
+    .tech-card,
+    .tech-item {
+        justify-content: flex-start;
+    }
+
+    .tech-card .icon,
+    .tech-item .icon,
+    .tech-card i,
+    .tech-item i {
+        margin-left: 0 !important;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .tech-card,
+    .tech-item {
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+    }
+}
+/* ===================================================
+   RESPONSIVITÉ : PROFIL (LUXURY CARD)
+   =================================================== */
+
+/* --- 1. ADAPTATION DE LA CARTE (TABLETTES) --- */
+@media (max-width: 992px) {
+    .luxury-card {
+        width: 95%;
+        margin: -40px auto 20px;
+        padding: 25px;
+    }
+}
+
+/* --- 2. PASSAGE EN MODE VERTICAL (MOBILES) --- */
+@media (max-width: 768px) {
+    .card-inner {
+        flex-direction: column !important; /* On empile la photo et le texte */
+        text-align: center; /* On centre tout le contenu */
+        gap: 25px;
+    }
+
+    /* Redimensionnement de la photo pour mobile */
+    .photo-container {
+        width: 150px !important;
+        height: 150px !important;
+        margin: 0 auto; /* Centre la photo horizontalement */
+        border-width: 3px; /* Bordure un peu plus fine pour l'élégance */
+    }
+
+    .photo-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* Ajustement des textes du profil */
+    .profile-info h2 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+    }
+
+    .profile-info .status {
+        justify-content: center; /* Centre les badges/status sous le nom */
+        font-size: 0.85rem;
+    }
+
+    /* Si tu as des boutons d'action dans le profil (CV, Contact) */
+    .profile-actions {
+        display: flex;
+        flex-direction: column; /* Boutons l'un sur l'autre pour cliquer facilement */
+        gap: 12px;
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .profile-actions .btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* --- 3. OPTIMISATION TRÈS PETITS ÉCRANS (<480px) --- */
+@media (max-width: 480px) {
+    .luxury-card {
+        padding: 15px;
+        border-radius: 16px; /* Un peu moins arrondi pour gagner de l'espace */
+    }
+
+    .photo-container {
+        width: 120px !important;
+        height: 120px !important;
+    }
+
+    .profile-info p {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+}
+/* ===================================================
+   RESPONSIVITÉ : BOUTONS PROFIL (LinkedIn & Actions)
+   =================================================== */
+
+   @media (max-width: 768px) {
+    /* 1. Conteneur des boutons LinkedIn / GitHub / etc. */
+    .social-links {
+        display: flex !important;
+        flex-direction: row !important; /* On les garde sur la même ligne */
+        justify-content: center;
+        gap: 12px;
+        margin: 15px 0;
+    }
+
+    /* Réduction de la taille des boutons circulaires (LinkedIn/Social) */
+    .social-btn {
+        width: 40px !important;
+        height: 40px !important;
+        font-size: 1.1rem !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+    }
+
+    /* 2. Les deux autres boutons (ex: "Mon CV" et "Contact") */
+    .profile-actions {
+        display: flex !important;
+        flex-direction: row !important; /* Côte à côte sur tablette */
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        margin-top: 15px;
+    }
+
+    /* On réduit la taille du texte et le padding des boutons d'action */
+    .profile-actions .btn {
+        padding: 8px 16px !important;
+        font-size: 0.85rem !important;
+        flex: 1; /* Ils prennent la même largeur */
+        max-width: 150px; /* Mais pas trop larges */
+        white-space: nowrap; /* Empêche le texte de sauter à la ligne */
+    }
+}
+/* ===================================================
+   RESPONSIVITÉ : BORDURES ET PADDING DES BOUTONS
+   =================================================== */
+
+   @media (max-width: 768px) {
+    /* 1. Affinement des bordures générales */
+    .btn, 
+    .social-btn, 
+    .btn-cv,
+    .profile-actions .btn {
+        border-width: 1px !important; /* On réduit l'épaisseur de la bordure à 1px */
+        padding: 8px 16px !important; /* On réduit l'espace interne */
+        border-radius: 12px !important; /* On adoucit l'arrondi pour le mobile */
+    }
+
+    /* 2. Cas spécifique des boutons ronds (LinkedIn / Facebook) */
+    .social-btn {
+        border-width: 1px !important;
+        width: 40px !important;
+        height: 40px !important;
+        padding: 0 !important; /* Important : pas de padding pour garder un cercle parfait */
+    }
+
+    /* 3. Cas du bouton Télécharger CV */
+    .btn-cv {
+        border-width: 1.5px !important; /* Un tout petit peu plus épais pour l'emphase */
+        font-size: 0.85rem !important;
+        letter-spacing: 0.5px !important; /* On resserre un peu les lettres */
+    }
+
+    /* 4. Effet de l'ombre (Glow) sur mobile */
+    /* On réduit l'ombre portée qui peut paraître trop "sale" sur petit écran */
+    .btn:hover, 
+    .social-btn:hover {
+        box-shadow: 0 0 10px var(--primary-glow) !important;
+        transform: translateY(-1px) !important; /* Effet de survol plus discret */
+    }
+}
+
+/* --- OPTIMISATION TRÈS PETITS ÉCRANS (< 400px) --- */
+@media (max-width: 400px) {
+    .btn, .btn-cv {
+        padding: 6px 12px !important;
+        font-size: 0.8rem !important;
+    }
+}
+/* --- OPTIMISATION POUR LES TRÈS PETITS ÉCRANS (Mobiles < 480px) --- */
+@media (max-width: 480px) {
+    .profile-actions {
+        flex-direction: column !important; /* Sur petit mobile, l'un sur l'autre pour le pouce */
+        align-items: center;
+    }
+
+    .profile-actions .btn {
+        width: 100% !important; /* Largeur complète pour cliquer facilement */
+        max-width: 280px;
+    }
+
+    .social-links {
+        gap: 15px; /* Plus d'espace pour éviter les clics accidentels */
+    }
+    
+    .social-btn {
+        width: 38px !important;
+        height: 38px !important;
+    }
+}
+/* ===================================================
+   CORRECTIF LARGEUR (WIDTH) : BOUTONS PROFIL
+   =================================================== */
+
+ /* ===================================================
+   UNIFICATION TOTALE : CV, LINKEDIN, FACEBOOK
+   (Style rectangulaire identique pour tous)
+   =================================================== */
+
+/* ===================================================
+   CORRECTIF FINAL : UNIFICATION BOUTONS PROFIL
+   =================================================== */
+
+   @media (max-width: 768px) {
+    /* 1. Conteneurs en colonnes pour empiler les boutons proprement */
+    .profile-actions, 
+    .social-links {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 12px !important;
+        width: 100% !important;
+        margin: 15px 0 !important;
+    }
+
+    /* 2. Unification de TOUS les boutons (LinkedIn, Facebook, CV) */
+    .social-btn, 
+    .btn-cv, 
+    .profile-actions .btn {
+        /* --- SUPPRESSION DU MODE CERCLE --- */
+        border-radius: 12px !important;
+        height: auto !important;
+        min-height: 44px !important; /* Taille standard tactile */
+        
+        /* --- LARGEUR ET ALIGNEMENT --- */
+        width: 100% !important;
+        max-width: 250px !important; /* Largeur identique pour tous */
+        display: inline-flex !important;
+        flex-direction: row !important; /* Force icône + texte sur la même ligne */
+        justify-content: center !important;
+        align-items: center !important;
+        
+        /* --- STYLE VISUEL (FIN & COMPACT) --- */
+        border: 1px solid var(--primary) !important; /* Bordure fine 1px */
+        padding: 8px 20px !important;
+        background: rgba(0, 210, 255, 0.05) !important;
+        
+        /* --- TEXTE --- */
+        font-size: 0.9rem !important;
+        text-decoration: none !important;
+        white-space: nowrap !important;
+    }
+
+    /* 3. Alignement de l'icône avec le texte dans le bouton */
+    .social-btn i, 
+    .btn-cv i, 
+    .profile-actions .btn i {
+        margin-right: 10px !important;
+        font-size: 1.1rem !important;
+        flex-shrink: 0 !important;
+    }
+}
+
+/* --- OPTIMISATION ÉCRANS TRÈS ÉTROITS --- */
+@media (max-width: 360px) {
+    .social-btn, .btn-cv {
+        max-width: 210px !important;
+        font-size: 0.8rem !important;
+    }
+}
+/* ============================= */
+/* RESPONSIVE RESTONS EN CONTACT */
+/* ============================= */
+
+
+
+/* ========================= */
+/* CONTACT PANEL LAYOUT FIX  */
+/* ========================= */
+
+.contact-section {
+    padding: 60px 20px;
+}
+
+.contact-section .container {
+    max-width: 1100px;
+    margin: auto;
+}
+
+/* TITRE */
+.contact-section .title {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+/* ===== PANEL PRINCIPAL ===== */
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: stretch; /* 🔥 même hauteur */
+}
+
+/* ===== PANELS ===== */
+.contact-info,
+.contact-form {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 25px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    width: 100%;
+    min-width: 0;
+}
+
+/* ===== ALIGNEMENT CONTACT ===== */
+.contact-detail {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.contact-detail:hover {
+    background: rgba(0, 210, 255, 0.08);
+    transform: translateX(5px);
+}
+
+/* ICÔNE */
+.contact-detail i {
+    width: 38px;
+    height: 38px;
+    flex: 0 0 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: var(--primary);
+    border-radius: 50%;
+    background: rgba(0, 210, 255, 0.1);
+}
+
+/* TEXTE */
+.contact-detail a {
+    flex: 1;
+    min-width: 0;
+    color: #ccd6f6;
+    font-size: 14px;
+    text-decoration: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ========================= */
+/* FORMULAIRE */
+.contact-form .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.contact-form label {
+    margin-bottom: 6px;
+    font-size: 14px;
+    color: #ccd6f6;
+}
+
+.contact-form input,
+.contact-form textarea {
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+}
+
+.btn-submit {
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: var(--primary);
+    color: #000;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-submit:hover {
+    transform: translateY(-2px);
+    opacity: 0.85;
+}
+
+/* ========================= */
+/* TABLETTE */
+@media (max-width: 992px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+}
+
+/* ========================= */
+/* MOBILE */
+@media (max-width: 768px) {
+    .contact-section {
+        padding: 40px 15px;
+    }
+
+    .contact-info,
+    .contact-form {
+        padding: 20px;
+    }
+
+    .contact-detail i {
+        width: 32px;
+        height: 32px;
+        flex: 0 0 32px;
+        font-size: 15px;
+    }
+
+    .contact-detail a {
+        font-size: 13px;
+    }
+}
+
+/* ========================= */
+/* PETIT MOBILE */
+@media (max-width: 480px) {
+    .contact-info,
+    .contact-form {
+        padding: 15px;
+    }
+
+    .contact-detail i {
+        width: 28px;
+        height: 28px;
+        flex: 0 0 28px;
+        font-size: 14px;
+    }
+
+    .contact-detail a {
+        font-size: 12px;
+    }
+}
+
+
+/* ============================= */
+/* RESPONSIVE CERCLE TECHNOLOGIE */
+/* ============================= */
+
+.tech-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tech-chart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+/* Canvas du cercle */
+#techChart {
+    max-width: 350px;
+    width: 100% !important;
+    height: auto !important;
+    margin: 0 auto;
+}
+
+/* Tablette */
+@media (max-width: 1024px) {
+    #techChart {
+        max-width: 300px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .tech-section {
+        padding: 20px 10px;
+        text-align: center;
+    }
+
+    #techChart {
+        max-width: 260px;
+    }
+}
+
+/* Petit mobile */
+@media (max-width: 480px) {
+    #techChart {
+        max-width: 220px;
+    }
+}
 
 /* ===================================================
    RESPONSIVITÉ ULTRA-PETITS ÉCRANS (max 400px)
    =================================================== */
+
 @media (max-width: 400px) {
+    /* Tailles de police globales */
     body {
         font-size: 14px;
     }
@@ -1837,6 +2858,7 @@ a{
     .container {
         padding: 30px 15px;
     }
+    /* Menu */
     .menu {
         width: 95%;
         padding: 0.5rem 1rem;
@@ -1844,6 +2866,7 @@ a{
     .logo {
         font-size: 1.4rem;
     }
+    /* Carte de profil */
     .luxury-card {
         padding: 15px;
         margin-top: -30px;
@@ -1855,6 +2878,7 @@ a{
     .marquee-text span {
         font-size: 0.7rem;
     }
+    /* Boutons profil unifiés */
     .btn-linkedin,
     .btn-facebook,
     .btn-cv {
@@ -1862,6 +2886,7 @@ a{
         padding: 6px 12px !important;
         font-size: 0.8rem !important;
     }
+    /* Grilles projets */
     .research-card {
         padding: 12px;
     }
@@ -1878,6 +2903,7 @@ a{
     .project-feed .feed-content {
         font-size: 0.75rem;
     }
+    /* Terminal */
     .terminal-body {
         height: 200px;
         font-size: 0.7rem;
@@ -1889,6 +2915,7 @@ a{
     .terminal-title {
         font-size: 0.65rem;
     }
+    /* Compétences */
     .skill-card {
         padding: 0.6rem;
     }
@@ -1903,6 +2930,7 @@ a{
     .skill-percent {
         font-size: 0.7rem;
     }
+    /* Statistiques */
     .stat-card {
         min-width: 120px;
         padding: 0.8rem;
@@ -1913,6 +2941,7 @@ a{
     .stat-label {
         font-size: 0.7rem;
     }
+    /* Contact */
     .contact-info, .contact-form {
         padding: 12px;
     }
@@ -1924,6 +2953,7 @@ a{
     .contact-detail a {
         font-size: 0.75rem;
     }
+    /* Footer */
     .footer-col h3 {
         font-size: 1rem;
     }
@@ -1939,16 +2969,36 @@ a{
     .quote-box {
         font-size: 0.7rem;
     }
+    /* Chatbot */
+    .chatbot-toggle {
+        width: 45px;
+        height: 45px;
+    }
+    .chatbot-toggle i {
+        font-size: 1.5rem;
+    }
+    .chatbot-window {
+        width: 260px;
+        height: 380px;
+        right: -5px;
+    }
+    .message {
+        font-size: 0.8rem;
+        max-width: 90%;
+    }
+    /* Graphique technologies */
     #techChart {
         max-width: 180px;
     }
     .chart-note {
         font-size: 0.7rem;
     }
+    /* Filtres projets */
     .filter-btn {
         padding: 0.3rem 0.8rem;
         font-size: 0.7rem;
     }
+    /* Bouton paramètres */
     .settings-btn {
         width: 40px;
         height: 40px;
@@ -1957,6 +3007,10 @@ a{
         right: 15px;
     }
 }
+
+/* ===================================================
+   ÉCRANS TRÈS ÉTROITS (max 360px)
+   =================================================== */
 
 @media (max-width: 360px) {
     .hero-content h1 {
@@ -1985,6 +3039,13 @@ a{
     .stat-number {
         font-size: 1.5rem;
     }
+    .chatbot-window {
+        width: 240px;
+        height: 350px;
+    }
+    .terminal-body {
+        height: 180px;
+    }
     .badge-btn {
         font-size: 0.65rem;
         padding: 0.2rem 0.6rem;
@@ -1993,6 +3054,10 @@ a{
         font-size: 0.9rem;
     }
 }
+
+/* ===================================================
+   ÉCRANS TRÈS TRÈS ÉTROITS (max 320px)
+   =================================================== */
 
 @media (max-width: 320px) {
     .hero-content h1 {
@@ -2034,6 +3099,16 @@ a{
     }
     .stat-number {
         font-size: 1.2rem;
+    }
+    .chatbot-window {
+        width: 220px;
+        height: 320px;
+    }
+    .chatbot-messages {
+        padding: 10px;
+    }
+    .message {
+        font-size: 0.7rem;
     }
     .terminal-body {
         height: 150px;
