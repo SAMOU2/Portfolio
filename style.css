@@ -3292,9 +3292,9 @@ html, body {
         right: 10px;
     }
     .chatbot-window {
-        width: 92vw;
+        width: 85vw;
         height: 70vh;
-        right: 4vw;
+        right: 7.5vw;
         bottom: 70px;
     }
     .chatbot-toggle {
@@ -3322,9 +3322,9 @@ html, body {
 }
 @media (max-width: 360px) {
     .chatbot-window {
-        width: 95vw;
+        width: calc(100% - 20px);
         height: 75vh;
-        right: 2.5vw;
+        right: 10px;;
     }
     .message {
         font-size: 0.8rem;
