@@ -1088,95 +1088,111 @@ if (terminalInput && terminalBody) {
         terminalInput.focus();
     });
 }
-// === CHATBOT FLOTTANT ===
-// === CHATBOT AMÉLIORÉ ===
+
+// ================= CHATBOT AMÉLIORÉ =================
 const chatbotToggle = document.querySelector('.chatbot-toggle');
 const chatbotWindow = document.querySelector('.chatbot-window');
 const chatbotClose = document.querySelector('.chatbot-close');
 const chatbotMessages = document.getElementById('chatbot-messages');
 const chatbotInput = document.getElementById('chatbot-input');
 const chatbotSend = document.getElementById('chatbot-send');
-const suggestionBtns = document.querySelectorAll('.suggestion');
+const suggestionsContainer = document.getElementById('chatbot-suggestions');
 
-let conversationHistory = []; // pour mémoire simple
+let conversationHistory = [];
+let isWaiting = false;
 
-// Ouvrir/fermer
+// === OUVERTURE / FERMETURE ===
 if (chatbotToggle && chatbotWindow) {
     chatbotToggle.addEventListener('click', () => {
         chatbotWindow.classList.toggle('open');
+        if (chatbotWindow.classList.contains('open')) {
+            loadChatHistory();
+        }
     });
     chatbotClose.addEventListener('click', () => {
         chatbotWindow.classList.remove('open');
     });
 }
 
+// === SAUVEGARDE / CHARGEMENT DE L'HISTORIQUE (localStorage) ===
+function saveChatHistory() {
+    const messages = [];
+    document.querySelectorAll('.chatbot-messages .message').forEach(msg => {
+        messages.push({
+            text: msg.innerText,
+            sender: msg.classList.contains('user') ? 'user' : 'bot'
+        });
+    });
+    localStorage.setItem('chatHistory', JSON.stringify(messages));
+}
+
+function loadChatHistory() {
+    const history = JSON.parse(localStorage.getItem('chatHistory') || '[]');
+    if (history.length === 0) return;
+    chatbotMessages.innerHTML = '';
+    history.forEach(msg => addChatMessage(msg.text, msg.sender));
+}
+
+// === AFFICHER UN MESSAGE ===
 function addChatMessage(text, sender = 'user') {
     const msgDiv = document.createElement('div');
     msgDiv.classList.add('message', sender);
     msgDiv.innerText = text;
     chatbotMessages.appendChild(msgDiv);
     chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-    // Mémoriser l'historique (max 10)
     conversationHistory.push({ sender, text });
-    if (conversationHistory.length > 10) conversationHistory.shift();
+    if (conversationHistory.length > 20) conversationHistory.shift();
+    saveChatHistory();
 }
 
-// Nettoyer le texte pour mieux détecter les intentions
+// === INDICATEUR DE FRAPPE ===
+let typingDiv = null;
+function showTypingIndicator() {
+    if (typingDiv) return;
+    typingDiv = document.createElement('div');
+    typingDiv.classList.add('message', 'bot', 'typing');
+    typingDiv.innerHTML = '🤖 En train d’écrire...';
+    chatbotMessages.appendChild(typingDiv);
+    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+}
+function removeTypingIndicator() {
+    if (typingDiv) {
+        typingDiv.remove();
+        typingDiv = null;
+    }
+}
+
+// === NETTOYAGE POUR LA DÉTECTION DES INTENTIONS ===
 function normalize(text) {
     return text
         .toLowerCase()
         .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "");
+        .replace(/[\u0300-\u036f]/g, "")
+        .trim();
 }
-function getBotResponse(userMessage) {
-    let msg = normalize(userMessage);
-    
-    // Dictionnaire des réponses (intentions)
-    // Dictionnaire des réponses (intentions)
+
+// === DICTIONNAIRE DES INTENTIONS ===
 const intents = {
-    // Salutations
     'bonjour|salut|coucou|hello|hey|hi': "Bonjour ! Comment puis-je vous aider ?",
-    'ca va|comment allez-vous|comment ca va': "Très bien, merci ! Et vous ?", // 'ça' devient 'ca'
+    'ca va|comment allez-vous|comment ca va|comment tu vas': "Très bien, merci ! Et vous ?",
     'merci|thanks': "Avec plaisir !",
-    
-    // Projets généraux
-    'projets?|quels projets|vos projets|liste des projets': "Mes principaux projets : GTB (bibliothèque), DorkLS, SQLI Scanner, StockVison, PHP Compiler, Analyse COVID-19. Lequel vous intéresse ?",
-    
-    // Projet GTB
-    'gtb|gestion de bibliotheque|bibliotheque': "GTB : gestion de bibliothèque avec carte numérique, détection de vol, base Oracle SQL. Voir site officiel.", // Sans accent
-    
-    // DorkLS
-    'dorkls|scanner de vulnerabilites|dork': "DorkLS : scanner web multithreadé pour trouver des failles de sécurité via moteurs de recherche.", // Sans accent
-    
-    // SQLI Scanner
-    'sqli|injection sql|scan sql': "SQLI Scanner : détection et exploitation des injections SQL avec contournement WAF.",
-    
-    // StockVison
+    'projets?|quels projets|vos projets|liste des projets|projets': "Mes principaux projets : GTB (bibliothèque), DorkLS, SQLI Scanner, StockVison, PHP Compiler, Analyse COVID-19. Lequel vous intéresse ?",
+    'gtb|gestion de bibliotheque|bibliotheque': "GTB : gestion de bibliothèque avec carte numérique, détection de vol, base Oracle SQL. Voir site officiel.",
+    'dorkls|scanner de vulnerabilites|dork': "DorkLS : scanner web multithreadé pour trouver des failles de sécurité via moteurs de recherche.",
+    'sqli|injection sql|scan sql|sqli scanner': "SQLI Scanner : détection et exploitation des injections SQL avec contournement WAF.",
     'stockvison|gestion de stock|deepseek': "StockVison : gestion de stock intelligente avec assistant DeepSeek.",
-    
-    // PHP Compiler
     'php compiler|analyseur php|compilateur php': "PHP Compiler : analyse lexicale et syntaxique de code PHP en temps réel.",
-    
-    // COVID-19
-    'covid|covid-19|analyse covid|simulation epidemiologique': "Analyse COVID-19 : simulation en C avec arbres binaires de recherche et statistiques par âge.", // Sans accent
-    
-    // Compétences (LE BUG ÉTAIT ICI)
+    'covid|covid-19|analyse covid|simulation epidemiologique': "Analyse COVID-19 : simulation en C avec arbres binaires de recherche et statistiques par âge.",
     'competences|skills|technologies|langages|outils': "Mes compétences : Java, Python, C, JavaScript, SQL, PHP, cybersécurité, Linux, Git, Three.js, DeepSeek.",
-    
-    // Contact
     'contact|email|mail|me contacter': "Vous pouvez m'écrire à samoumegharba210@gmail.com ou utiliser le formulaire de contact.",
-    
-    // CV
-    'cv|telecharger cv|mon cv': "Mon CV est disponible en téléchargement dans le footer du site.", // Sans accent
-    
-    // À propos
-    'qui es-tu|presentation|toi': "Je suis l'assistant virtuel du portfolio de Samou Megharba, ingénieur en génie logiciel.", // Sans accent
-    
-    // Aide
+    'cv|telecharger cv|mon cv': "Mon CV est disponible en téléchargement dans le footer du site.",
+    'qui es-tu|presentation|toi': "Je suis l'assistant virtuel du portfolio de Samou Megharba, ingénieur en génie logiciel.",
     'aide|help|que faire': "Vous pouvez me poser des questions sur les projets, compétences, contact, ou taper un nom de projet (GTB, DorkLS, etc.)."
 };
+
+function getBotResponse(userMessage) {
+    const msg = normalize(userMessage);
     
-    // Parcours des intentions
     for (let pattern in intents) {
         const regex = new RegExp(pattern, 'i');
         if (regex.test(msg)) {
@@ -1184,7 +1200,6 @@ const intents = {
         }
     }
     
-    // Vérifier si le message contient un nom de projet spécifique non capturé
     const projectKeywords = ['gtb', 'dorkls', 'sqli', 'stockvison', 'php', 'covid'];
     for (let kw of projectKeywords) {
         if (msg.includes(kw)) {
@@ -1192,33 +1207,68 @@ const intents = {
         }
     }
     
-    // Réponse par défaut
     return "Je n'ai pas compris. Essayez de me poser une question sur : projets, compétences, contact, ou le nom d'un projet (GTB, DorkLS, SQLI Scanner, StockVison, PHP Compiler, COVID-19).";
 }
 
-function sendMessage(message = null) {
-    let userMessage = message || chatbotInput.value.trim();
-    if (userMessage === '') return;
-    addChatMessage(userMessage, 'user');
-    if (!message) chatbotInput.value = '';
+function updateSuggestions(context) {
+    if (!suggestionsContainer) return;
+    const common = ['Mes projets', 'Compétences', 'Contact', 'CV'];
+    let suggestions = [...common];
     
-    // Simuler délai de réponse
-    setTimeout(() => {
-        const reply = getBotResponse(userMessage);
-        addChatMessage(reply, 'bot');
-    }, 400);
+    if (context && context.toLowerCase().includes('gtb')) suggestions.push('Détails GTB');
+    if (context && context.toLowerCase().includes('dorkls')) suggestions.push('Détails DorkLS');
+    if (context && context.toLowerCase().includes('sqli')) suggestions.push('Détails SQLI Scanner');
+    
+    suggestionsContainer.innerHTML = '';
+    suggestions.forEach(text => {
+        const btn = document.createElement('button');
+        btn.className = 'suggestion';
+        btn.textContent = text;
+        btn.addEventListener('click', () => {
+            chatbotInput.value = text;
+            sendMessage(text);
+        });
+        suggestionsContainer.appendChild(btn);
+    });
 }
 
-// Événements
-chatbotSend.addEventListener('click', () => sendMessage());
-chatbotInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') sendMessage();
-});
+async function sendMessage(message = null) {
+    if (isWaiting) return;
+    const userMessage = message || chatbotInput.value.trim();
+    if (userMessage === '') return;
+    
+    addChatMessage(userMessage, 'user');
+    if (!message) chatbotInput.value = '';
+    isWaiting = true;
+    
+    showTypingIndicator();
+    
+    setTimeout(() => {
+        const reply = getBotResponse(userMessage);
+        removeTypingIndicator();
+        addChatMessage(reply, 'bot');
+        isWaiting = false;
+        updateSuggestions(reply);
+    }, 600);
+}
 
-// Gestion des suggestions
-suggestionBtns.forEach(btn => {
+if (chatbotSend) {
+    chatbotSend.addEventListener('click', () => sendMessage());
+}
+if (chatbotInput) {
+    chatbotInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') sendMessage();
+    });
+}
+
+const staticSuggestions = document.querySelectorAll('.suggestion');
+staticSuggestions.forEach(btn => {
     btn.addEventListener('click', () => {
         const text = btn.innerText;
         sendMessage(text);
     });
-}); 
+});
+
+if (chatbotWindow && chatbotWindow.classList.contains('open')) {
+    loadChatHistory();
+}
