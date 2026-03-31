@@ -323,14 +323,17 @@ body {
     to { transform: translateX(-50%); }
 }
 
+/* ========== BOUTONS PROFIL UNIFIÉS ========== */
 .action-buttons {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 12px;
     margin-top: 20px;
 }
 
-.btn {
+.btn-linkedin,
+.btn-facebook,
+.btn-cv {
     padding: 10px 20px;
     border-radius: 12px;
     text-decoration: none;
@@ -340,36 +343,84 @@ body {
     align-items: center;
     gap: 8px;
     transition: var(--transition);
+    border: 1px solid;
+    background: rgba(0, 210, 255, 0.05);
+    cursor: pointer;
 }
 
 .btn-linkedin {
-    border: 1px solid #0077b5;
+    border-color: #0077b5;
     color: #0077b5;
 }
 .btn-linkedin:hover {
     background: #0077b5;
     color: white;
 }
+
 .btn-facebook {
-    border: 1px solid #1877f2;
+    border-color: #1877f2;
     color: #1877f2;
 }
 .btn-facebook:hover {
     background: #1877f2;
     color: white;
 }
+
 .btn-cv {
-    border: 1px solid var(--secondary);
+    border-color: var(--secondary);
     color: var(--secondary);
 }
 .btn-cv:hover {
     background: var(--secondary);
     color: var(--bg-dark);
 }
-.btn:hover {
+
+.btn-linkedin:hover,
+.btn-facebook:hover,
+.btn-cv:hover {
     transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
+
+/* ========== RESPONSIVE BOUTONS ========== */
+@media (max-width: 768px) {
+    .action-buttons {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .btn-linkedin,
+    .btn-facebook,
+    .btn-cv {
+        width: 100%;
+        max-width: 280px;
+        justify-content: center;
+        padding: 10px 16px;
+        font-size: 0.9rem;
+        border-radius: 12px;
+        border-width: 1px;
+        white-space: nowrap;
+    }
+
+    .btn-linkedin i,
+    .btn-facebook i,
+    .btn-cv i {
+        margin-right: 8px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .btn-linkedin,
+    .btn-facebook,
+    .btn-cv {
+        max-width: 100%;
+        padding: 8px 12px;
+        font-size: 0.85rem;
+    }
+}
+/* ========== FIN BOUTONS PROFIL ========== */
 
 .live-section {
     padding: 60px 0;
@@ -1212,9 +1263,6 @@ body.light-theme .menu-items a {
         width: 150px;
         height: 150px;
     }
-    .action-buttons {
-        justify-content: center;
-    }
     .project-detail {
         flex-direction: column;
         text-align: center;
@@ -1263,10 +1311,6 @@ body.light-theme .menu-items a {
 @media (max-width: 480px) {
     .hero-content h1 {
         font-size: 2rem;
-    }
-    .btn {
-        width: 100%;
-        justify-content: center;
     }
     .luxury-card {
         padding: 20px;
