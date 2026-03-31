@@ -1613,7 +1613,7 @@ a{
     }
 }
 /* Chatbot flottant */
-/* Chatbot flottant - Version responsive corrigée */
+
 .chatbot {
     position: fixed;
     bottom: 90px;
@@ -1643,8 +1643,8 @@ a{
     position: absolute;
     bottom: 70px;
     right: 0;
-    width: 320px;
-    height: 450px;
+    width: 340px;
+    height: 500px;
     background: var(--bg-card);
     backdrop-filter: blur(15px);
     border-radius: 20px;
@@ -1727,18 +1727,20 @@ a{
 }
 .chatbot-input {
     display: flex;
-    padding: 10px;
+    padding: 12px;
     border-top: 1px solid rgba(255,255,255,0.1);
     background: rgba(0,0,0,0.2);
+    gap: 8px;
 }
 .chatbot-input input {
     flex: 1;
     background: rgba(255,255,255,0.1);
     border: none;
     border-radius: 25px;
-    padding: 8px 15px;
+    padding: 10px 15px;
     color: var(--text-main);
     outline: none;
+    font-size: 0.9rem;
 }
 .chatbot-input input::placeholder {
     color: var(--text-dim);
@@ -1747,28 +1749,35 @@ a{
     background: none;
     border: none;
     color: var(--primary);
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     cursor: pointer;
-    margin-left: 10px;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+}
+.chatbot-input button:hover {
+    transform: scale(1.05);
 }
 
-/* Responsive Chatbot */
+/* Responsive : fenêtre plus grande sur mobile */
 @media (max-width: 768px) {
     .chatbot {
         bottom: 85px;
         right: 15px;
     }
     .chatbot-window {
-        width: calc(100vw - 30px);
+        width: 90vw;
+        height: 70vh;
         right: 0;
-        height: 400px;
+        bottom: 70px;
     }
 }
 @media (max-width: 480px) {
     .chatbot-window {
-        width: 280px;
-        height: 400px;
-        right: -10px;
+        width: 95vw;
+        height: 75vh;
+        right: 2.5vw;
+        bottom: 70px;
     }
     .chatbot-toggle {
         width: 45px;
@@ -1777,38 +1786,20 @@ a{
     .chatbot-toggle i {
         font-size: 1.5rem;
     }
-}
-@media (max-width: 400px) {
-    .chatbot-window {
-        width: 260px;
-        height: 380px;
-        right: -5px;
+    .chatbot-input input {
+        padding: 8px 12px;
+        font-size: 0.85rem;
     }
-    .message {
-        font-size: 0.8rem;
-        max-width: 90%;
-    }
-    .suggestion {
-        font-size: 0.7rem;
-        padding: 4px 10px;
+    .chatbot-input button {
+        font-size: 1.2rem;
     }
 }
 @media (max-width: 360px) {
     .chatbot-window {
-        width: 240px;
-        height: 350px;
-    }
-}
-@media (max-width: 320px) {
-    .chatbot-window {
-        width: 220px;
-        height: 320px;
-    }
-    .chatbot-messages {
-        padding: 10px;
+        height: 80vh;
     }
     .message {
-        font-size: 0.7rem;
+        font-size: 0.8rem;
     }
 }
 /* ===================================================
