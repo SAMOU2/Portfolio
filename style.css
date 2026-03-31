@@ -38,7 +38,6 @@ body {
     pointer-events: none;
 }
 
-
 .menu {
     position: fixed;
     top: 20px;
@@ -323,7 +322,7 @@ body {
     to { transform: translateX(-50%); }
 }
 
-/* ========== BOUTONS PROFIL UNIFIÉS ========== */
+/* ========== BOUTONS PROFIL UNIFIÉS (RECTANGULAIRES) ========== */
 .action-buttons {
     display: flex;
     flex-wrap: wrap;
@@ -382,7 +381,7 @@ body {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-/* ========== RESPONSIVE BOUTONS ========== */
+/* ========== RESPONSIVE BOUTONS PROFIL ========== */
 @media (max-width: 768px) {
     .action-buttons {
         flex-direction: column;
@@ -1478,58 +1477,6 @@ a{
     color: #4a5b6e;
 }
 
-/* Carte Google Meet */
-.meet-card {
-    background: var(--bg-card);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 24px;
-    padding: 1.5rem;
-    text-align: center;
-    margin-top: 2rem;
-    backdrop-filter: blur(10px);
-    transition: var(--transition);
-}
-.meet-card:hover {
-    border-color: var(--primary);
-    transform: translateY(-5px);
-}
-.meet-card i.fa-google {
-    font-size: 2.5rem;
-    color: #4285f4;
-    margin-bottom: 0.5rem;
-}
-.meet-card h3 {
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
-    color: var(--text-main);
-}
-.meet-card p {
-    color: var(--text-dim);
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
-}
-.meet-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: linear-gradient(135deg, #4285f4, #34a853);
-    border: none;
-    border-radius: 40px;
-    padding: 0.7rem 1.5rem;
-    color: white;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.2s;
-}
-.meet-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(66, 133, 244, 0.4);
-}
-.meet-note {
-    font-size: 0.7rem;
-    margin-top: 0.8rem;
-    opacity: 0.7;
-}
 /* Animation de transition entre sections */
 .section-highlight {
     animation: highlightPulse 0.8s ease-out;
@@ -2833,5 +2780,300 @@ html, body {
 @media (max-width: 480px) {
     #techChart {
         max-width: 220px;
+    }
+}
+
+/* ===================================================
+   RESPONSIVITÉ ULTRA-PETITS ÉCRANS (max 400px)
+   =================================================== */
+
+@media (max-width: 400px) {
+    /* Tailles de police globales */
+    body {
+        font-size: 14px;
+    }
+    .hero-content h1 {
+        font-size: 1.6rem;
+    }
+    .hero-content p {
+        font-size: 0.9rem;
+    }
+    .title {
+        font-size: 1.3rem;
+        margin-bottom: 20px;
+    }
+    .container {
+        padding: 30px 15px;
+    }
+    /* Menu */
+    .menu {
+        width: 95%;
+        padding: 0.5rem 1rem;
+    }
+    .logo {
+        font-size: 1.4rem;
+    }
+    /* Carte de profil */
+    .luxury-card {
+        padding: 15px;
+        margin-top: -30px;
+    }
+    .photo-container {
+        width: 110px !important;
+        height: 110px !important;
+    }
+    .marquee-text span {
+        font-size: 0.7rem;
+    }
+    /* Boutons profil unifiés */
+    .btn-linkedin,
+    .btn-facebook,
+    .btn-cv {
+        max-width: 220px !important;
+        padding: 6px 12px !important;
+        font-size: 0.8rem !important;
+    }
+    /* Grilles projets */
+    .research-card {
+        padding: 12px;
+    }
+    .research-card h3 {
+        font-size: 0.95rem;
+    }
+    .research-card p {
+        font-size: 0.8rem;
+    }
+    .project-feed .feed-time {
+        min-width: 35px;
+        font-size: 0.65rem;
+    }
+    .project-feed .feed-content {
+        font-size: 0.75rem;
+    }
+    /* Terminal */
+    .terminal-body {
+        height: 200px;
+        font-size: 0.7rem;
+        padding: 10px;
+    }
+    .terminal-input-line input {
+        font-size: 0.75rem;
+    }
+    .terminal-title {
+        font-size: 0.65rem;
+    }
+    /* Compétences */
+    .skill-card {
+        padding: 0.6rem;
+    }
+    .skill-header {
+        font-size: 0.8rem;
+        gap: 0.5rem;
+    }
+    .skill-header i {
+        font-size: 1rem;
+        width: 24px;
+    }
+    .skill-percent {
+        font-size: 0.7rem;
+    }
+    /* Statistiques */
+    .stat-card {
+        min-width: 120px;
+        padding: 0.8rem;
+    }
+    .stat-number {
+        font-size: 1.8rem;
+    }
+    .stat-label {
+        font-size: 0.7rem;
+    }
+    /* Contact */
+    .contact-info, .contact-form {
+        padding: 12px;
+    }
+    .contact-detail i {
+        width: 30px;
+        height: 30px;
+        font-size: 0.9rem;
+    }
+    .contact-detail a {
+        font-size: 0.75rem;
+    }
+    /* Footer */
+    .footer-col h3 {
+        font-size: 1rem;
+    }
+    .badge-btn {
+        padding: 0.3rem 0.7rem;
+        font-size: 0.7rem;
+    }
+    .footer-socials a {
+        width: 32px;
+        height: 32px;
+        font-size: 1rem;
+    }
+    .quote-box {
+        font-size: 0.7rem;
+    }
+    /* Chatbot */
+    .chatbot-toggle {
+        width: 45px;
+        height: 45px;
+    }
+    .chatbot-toggle i {
+        font-size: 1.5rem;
+    }
+    .chatbot-window {
+        width: 260px;
+        height: 380px;
+        right: -5px;
+    }
+    .message {
+        font-size: 0.8rem;
+        max-width: 90%;
+    }
+    /* Graphique technologies */
+    #techChart {
+        max-width: 180px;
+    }
+    .chart-note {
+        font-size: 0.7rem;
+    }
+    /* Filtres projets */
+    .filter-btn {
+        padding: 0.3rem 0.8rem;
+        font-size: 0.7rem;
+    }
+    /* Bouton paramètres */
+    .settings-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+        bottom: 15px;
+        right: 15px;
+    }
+}
+
+/* ===================================================
+   ÉCRANS TRÈS ÉTROITS (max 360px)
+   =================================================== */
+
+@media (max-width: 360px) {
+    .hero-content h1 {
+        font-size: 1.4rem;
+    }
+    .title {
+        font-size: 1.2rem;
+    }
+    .photo-container {
+        width: 100px !important;
+        height: 100px !important;
+    }
+    .btn-linkedin,
+    .btn-facebook,
+    .btn-cv {
+        max-width: 200px !important;
+        font-size: 0.75rem !important;
+        padding: 5px 10px !important;
+    }
+    .research-card h3 {
+        font-size: 0.85rem;
+    }
+    .research-card p {
+        font-size: 0.75rem;
+    }
+    .stat-number {
+        font-size: 1.5rem;
+    }
+    .chatbot-window {
+        width: 240px;
+        height: 350px;
+    }
+    .terminal-body {
+        height: 180px;
+    }
+    .badge-btn {
+        font-size: 0.65rem;
+        padding: 0.2rem 0.6rem;
+    }
+    .footer-col h3 {
+        font-size: 0.9rem;
+    }
+}
+
+/* ===================================================
+   ÉCRANS TRÈS TRÈS ÉTROITS (max 320px)
+   =================================================== */
+
+@media (max-width: 320px) {
+    .hero-content h1 {
+        font-size: 1.2rem;
+    }
+    .hero-content p {
+        font-size: 0.75rem;
+    }
+    .title {
+        font-size: 1rem;
+    }
+    .photo-container {
+        width: 90px !important;
+        height: 90px !important;
+    }
+    .marquee-text span {
+        font-size: 0.6rem;
+        margin-right: 30px;
+    }
+    .btn-linkedin,
+    .btn-facebook,
+    .btn-cv {
+        max-width: 180px !important;
+        font-size: 0.7rem !important;
+    }
+    .research-card {
+        padding: 10px;
+    }
+    .project-feed .feed-time {
+        min-width: 30px;
+        font-size: 0.6rem;
+    }
+    .project-feed .feed-content {
+        font-size: 0.7rem;
+    }
+    .stat-card {
+        min-width: 100px;
+        padding: 0.5rem;
+    }
+    .stat-number {
+        font-size: 1.2rem;
+    }
+    .chatbot-window {
+        width: 220px;
+        height: 320px;
+    }
+    .chatbot-messages {
+        padding: 10px;
+    }
+    .message {
+        font-size: 0.7rem;
+    }
+    .terminal-body {
+        height: 150px;
+        font-size: 0.65rem;
+    }
+    .terminal-input-line input {
+        font-size: 0.65rem;
+    }
+    .badge-btn {
+        font-size: 0.6rem;
+        padding: 0.2rem 0.5rem;
+    }
+    .footer-socials a {
+        width: 28px;
+        height: 28px;
+        font-size: 0.9rem;
+    }
+    .quote-box {
+        font-size: 0.6rem;
     }
 }
