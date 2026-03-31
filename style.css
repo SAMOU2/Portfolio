@@ -1612,8 +1612,8 @@ a{
         font-size: 0.8rem;
     }
 }
-/* Chatbot flottant */
 
+/* ================= CHATBOT FLOTTANT (CORRIGÉ) ================= */
 .chatbot {
     position: fixed;
     bottom: 90px;
@@ -1759,7 +1759,7 @@ a{
     transform: scale(1.05);
 }
 
-/* Responsive : fenêtre plus grande sur mobile */
+/* Responsive Chatbot – cohérent avec le reste du site */
 @media (max-width: 768px) {
     .chatbot {
         bottom: 85px;
@@ -1773,6 +1773,10 @@ a{
     }
 }
 @media (max-width: 480px) {
+    .chatbot {
+        bottom: 75px;
+        right: 15px;
+    }
     .chatbot-window {
         width: 95vw;
         height: 75vh;
